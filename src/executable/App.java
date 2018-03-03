@@ -6,6 +6,7 @@
 package executable;
 
 import database.*;
+import login.interfazGrafica.ventana.Interfaz;
 /**
  *
  * @author android
@@ -17,8 +18,8 @@ public class App {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DBQuery con=new DBQuery();
-        System.out.println(con.isIn("ab860e49413dab0745e2cfa8ab79f44d"));
+        Interfaz in=new Interfaz();
+        in.setVisible(true);
     }
     
 }
