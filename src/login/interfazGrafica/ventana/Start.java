@@ -6,26 +6,21 @@
 package login.interfazGrafica.ventana;
 
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 
 /**
  *
  * @author usuario
  */
-public class Sign_In extends javax.swing.JFrame {
+public class Start extends javax.swing.JFrame {
 
     /**
      * Creates new form Interfaz
      */
-    public Sign_In() {
+    public Start() {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        /*userPlaceHolder();
-        passwordPlaceHolder();   
-        emailPlaceHolder();*/
     }
 
     /**
@@ -39,11 +34,10 @@ public class Sign_In extends javax.swing.JFrame {
 
         exitButton = new javax.swing.JButton();
         iconUser = new javax.swing.JLabel();
-        userField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
-        signInButton = new javax.swing.JButton();
-        emailField = new javax.swing.JTextField();
+        signIn_Button = new javax.swing.JButton();
+        LogIn_Button = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         fondoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,47 +59,37 @@ public class Sign_In extends javax.swing.JFrame {
         iconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/logo_icon.png"))); // NOI18N
         getContentPane().add(iconUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, 180));
 
-        userField.setBackground(new java.awt.Color(51, 51, 51));
-        userField.setFont(new java.awt.Font("Euphemia", 1, 16)); // NOI18N
-        userField.setForeground(new java.awt.Color(255, 255, 255));
-        userField.addActionListener(new java.awt.event.ActionListener() {
+        signIn_Button.setBackground(new java.awt.Color(3, 3, 59));
+        signIn_Button.setFont(new java.awt.Font("Euphemia", 1, 14)); // NOI18N
+        signIn_Button.setForeground(new java.awt.Color(255, 255, 255));
+        signIn_Button.setText("Sign In");
+        signIn_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFieldActionPerformed(evt);
+                signIn_ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 27));
-        userField.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(signIn_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 200, -1));
 
-        passwordField.setBackground(new java.awt.Color(51, 51, 51));
-        passwordField.setFont(new java.awt.Font("Euphemia", 0, 16)); // NOI18N
-        passwordField.setForeground(new java.awt.Color(255, 255, 255));
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
+        LogIn_Button.setBackground(new java.awt.Color(0, 0, 51));
+        LogIn_Button.setFont(new java.awt.Font("Euphemia", 1, 14)); // NOI18N
+        LogIn_Button.setForeground(new java.awt.Color(255, 255, 255));
+        LogIn_Button.setText("Log In");
+        LogIn_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFieldActionPerformed(evt);
+                LogIn_ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 250, 27));
+        getContentPane().add(LogIn_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 200, -1));
 
-        jLabel3.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel3.setText("Do have account? Log In");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.addMouseListener(new MouseAdapter(){
-                public void mouseClicked(MouseEvent evt){
-                    jLabel3actionperformed(evt);
-                    
-                }
-        });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Euphemia", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("ACloud");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
-        signInButton.setBackground(new java.awt.Color(3, 3, 59));
-        signInButton.setForeground(new java.awt.Color(255, 255, 255));
-        signInButton.setText("Sign In");
-        getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
-
-        emailField.setBackground(new java.awt.Color(51, 51, 51));
-        emailField.setFont(new java.awt.Font("Euphemia", 0, 16)); // NOI18N
-        emailField.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 27));
+        jLabel2.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("The best way to hear music");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
         getContentPane().add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, -1));
@@ -118,34 +102,22 @@ public class Sign_In extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
-        // TODO add your handling code her
-        
-    }//GEN-LAST:event_userFieldActionPerformed
-    private void jLabel3actionperformed(MouseEvent evt){
+    private void LogIn_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogIn_ButtonActionPerformed
+        // TODO add your handling code here:
         Log_In ventanaLogIn = new Log_In();
         ventanaLogIn.setVisible(true);
-        Sign_In.this.dispose();
-    }
-    private void userPlaceHolder(){
-        userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
-        
-        userPlaceHolder.setFont("Euphemia");
-        userPlaceHolder.setColorHolder(Color.gray);
-        userPlaceHolder.setSize(16);
-    }
-    private void passwordPlaceHolder(){
-        passwordPlaceHolder = new com.placeholder.PlaceHolder(passwordField, "password");
-        passwordPlaceHolder.setFont("Euphemia");
-        passwordPlaceHolder.setColorHolder(Color.gray);
-        passwordPlaceHolder.setSize(16);
-    }
-    private void emailPlaceHolder(){
-        emailPlaceHolder = new com.placeholder.PlaceHolder(emailField, "E-mail");
-        emailPlaceHolder.setFont("Euphemia");
-        emailPlaceHolder.setColorHolder(Color.gray);
-        emailPlaceHolder.setSize(16);
-    }
+        Start.this.dispose();
+    }//GEN-LAST:event_LogIn_ButtonActionPerformed
+
+    private void signIn_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signIn_ButtonActionPerformed
+        // TODO add your handling code here:
+        Sign_In ventanaSignIn = new Sign_In();
+        ventanaSignIn.setVisible(true);
+        Start.this.dispose();
+    }//GEN-LAST:event_signIn_ButtonActionPerformed
+
+   
+   
     /**
      * @param args the command line arguments
      */
@@ -163,14 +135,18 @@ public class Sign_In extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -179,20 +155,19 @@ public class Sign_In extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sign_In().setVisible(true);
+                new Start().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField emailField;
+    private javax.swing.JButton LogIn_Button;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel fondoLabel;
     private javax.swing.JLabel iconUser;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton signInButton;
-    private javax.swing.JPasswordField passwordField;
-    private javax.swing.JTextField userField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton signIn_Button;
     // End of variables declaration//GEN-END:variables
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
