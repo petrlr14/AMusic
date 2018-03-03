@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package login.interfazGrafica.ventana;
-
+import database.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import javax.swing.JFrame;
+import password.Password;
 /**
  *
  * @author usuario
@@ -17,6 +21,7 @@ public class Interfaz extends javax.swing.JFrame {
     public Interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
+        con=new DBQuery();
     }
 
     /**
@@ -64,6 +69,11 @@ public class Interfaz extends javax.swing.JFrame {
 
         userField.setBackground(new java.awt.Color(51, 51, 51));
         userField.setForeground(new java.awt.Color(255, 255, 255));
+        userField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 200, -1));
 
         jLabel2.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
@@ -83,6 +93,11 @@ public class Interfaz extends javax.swing.JFrame {
         logInButton.setBackground(new java.awt.Color(3, 3, 59));
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
         logInButton.setText("Log In");
+        logInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 170, -1));
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
@@ -96,10 +111,29 @@ public class Interfaz extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_userFieldActionPerformed
+
+    private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
+        // TODO add your handling code here:
+        if(userField.getText().length()==0 || jPasswordField1.getPassword().length==0){
+            System.out.println("Uno de los campos está vacio");
+        }else{
+            if(con.isIn(Password.chartoPass(jPasswordField1.getPassword()), userField.getText())){
+                System.out.println("Exito!!!");
+                userField.setEnabled(false);
+                jPasswordField1.setEnabled(false);
+            }else{
+                System.out.println("fracaso");
+                userField.setText("");
+                jPasswordField1.setText("");
+            }
+        }
+        
+    }//GEN-LAST:event_logInButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
@@ -112,4 +146,5 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton logInButton;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
+    private DBQuery con;
 }

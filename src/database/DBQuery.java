@@ -21,7 +21,7 @@ public class DBQuery {
     }
     
     
-    private String[] buscandoElementos(String contraseña){
+    private String[] buscandoElementos(String contraseña, String user){
         String[] datos=null;
         try{
             con=conexion.open();
@@ -29,6 +29,7 @@ public class DBQuery {
             ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios WHERE pass='"+contraseña+"'");
             while (rs.next()){
                datos = new String[1];
+               datos[0]=rs.getString("username");
             }
             stmt.close();
             conexion.close(con);
@@ -39,8 +40,19 @@ public class DBQuery {
         }
     }
     
-    public boolean isIn(String contraseña){
-        return (buscandoElementos(contraseña)!=null);//devuelve tru si se encuentra
+    public boolean isIn(String contraseña, String user){
+        String[] aux;
+        aux=buscandoElementos(contraseña, user);
+        if(aux==null){
+            System.out.println("No se encuentra en la base de datos");
+            return false;
+        }else if(user.matches(aux[0])){
+            System.out.println("Exito");
+            return true;
+        }else{
+            System.out.println("contraseña o username erroneos");
+            return false;
+        }
     }
     
     
