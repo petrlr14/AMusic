@@ -21,9 +21,9 @@ public class Sign_In extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        userPlaceHolder();
+        /*userPlaceHolder();
         passwordPlaceHolder();   
-        emailPlaceHolder();
+        emailPlaceHolder();*/
     }
 
     /**
@@ -75,19 +75,27 @@ public class Sign_In extends javax.swing.JFrame {
         userField.getAccessibleContext().setAccessibleDescription("");
 
         passwordField.setBackground(new java.awt.Color(51, 51, 51));
+        passwordField.setFont(new java.awt.Font("Euphemia", 0, 16)); // NOI18N
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 250, 27));
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel3.setText("Don't have account? Create it");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
+        jLabel3.setText("Do have account? Log In");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, -1, -1));
 
         logInButton.setBackground(new java.awt.Color(3, 3, 59));
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
         logInButton.setText("Sign In");
-        getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 170, -1));
+        getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
 
         emailField.setBackground(new java.awt.Color(51, 51, 51));
+        emailField.setFont(new java.awt.Font("Euphemia", 0, 16)); // NOI18N
         emailField.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 27));
 
