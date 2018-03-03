@@ -18,7 +18,7 @@ public class App {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Log_In in=new Log_In();
+        Sign_In in=new Sign_In();
         in.setVisible(true);
     }
     

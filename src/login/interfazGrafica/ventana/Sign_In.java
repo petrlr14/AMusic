@@ -6,8 +6,10 @@
 package login.interfazGrafica.ventana;
 
 import database.DBQuery;
+import formatos.Email;
 import java.awt.Color;
-import password.Password;
+import formatos.Password;
+import java.awt.event.*;
 
 
 /**
@@ -42,7 +44,7 @@ public class Sign_In extends javax.swing.JFrame {
         userField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        logInButton = new javax.swing.JButton();
+        signInButton = new javax.swing.JButton();
         emailField = new javax.swing.JTextField();
         fondoLabel = new javax.swing.JLabel();
 
@@ -89,21 +91,21 @@ public class Sign_In extends javax.swing.JFrame {
         jLabel3.setText("Don't have account? Create it");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
 
-        logInButton.setBackground(new java.awt.Color(3, 3, 59));
-        logInButton.setForeground(new java.awt.Color(255, 255, 255));
-        logInButton.setText("Sign In");
-        logInButton.addActionListener(new java.awt.event.ActionListener() {
+        signInButton.setBackground(new java.awt.Color(3, 3, 59));
+        signInButton.setForeground(new java.awt.Color(255, 255, 255));
+        signInButton.setText("Sign In");
+        signInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logInButtonActionPerformed1(evt);
+                signInButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 170, -1));
+        getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 170, -1));
 
         emailField.setBackground(new java.awt.Color(51, 51, 51));
         emailField.setForeground(new java.awt.Color(255, 255, 255));
         emailField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logInButtonActionPerformed(evt);
+                emailFieldActionPerformed(evt);
             }
         });
         getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 27));
@@ -124,18 +126,27 @@ public class Sign_In extends javax.swing.JFrame {
         
     }//GEN-LAST:event_userFieldActionPerformed
 
-    private void logInButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed1
+    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         // TODO add your handling code here:
+        if(!Email.mailRegex(emailField.getText())){
+            emailField.setText("");
+            System.out.println("ingrese un email valido");
+        }
+        
         if(userField.getText().length()==0 || passwordField.getPassword().length==0 || emailField.getText().length()==0){
             System.out.println("Uno de los campos está vacio");
         }else{
-            if(con.isIn(Password.chartoPass(passwordField.getPassword()), userField.getText(),true)){
-                System.out.println("Las credenciales ya fueron usadas anteriormente");
+            if(con.isInSignin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
+                con.ingresandoADB(userField.getText(), Password.chartoPass(passwordField.getPassword()), emailField.getText());
             }else{
-                System.out.println(con.ingresandoADB(userField.getText(), Password.chartoPass(passwordField.getPassword()), emailField.getText()));
+                System.out.println("El nombre de usuario y contraseña ya se encuentran en la base de datos como un solo registro");
             }
         }
-    }//GEN-LAST:event_logInButtonActionPerformed1
+    }//GEN-LAST:event_signInButtonActionPerformed
+
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFieldActionPerformed
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         
@@ -199,8 +210,8 @@ public class Sign_In extends javax.swing.JFrame {
     private javax.swing.JLabel fondoLabel;
     private javax.swing.JLabel iconUser;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton logInButton;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton signInButton;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
     private com.placeholder.PlaceHolder userPlaceHolder;
