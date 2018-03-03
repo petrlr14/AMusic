@@ -5,18 +5,25 @@
  */
 package login.interfazGrafica.ventana;
 
+import java.awt.Color;
+
+
 /**
  *
  * @author usuario
  */
-public class Interfaz extends javax.swing.JFrame {
+public class Sign_In extends javax.swing.JFrame {
 
     /**
      * Creates new form Interfaz
      */
-    public Interfaz() {
+    public Sign_In() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        userPlaceHolder();
+        passwordPlaceHolder();   
+        emailPlaceHolder();
     }
 
     /**
@@ -30,12 +37,11 @@ public class Interfaz extends javax.swing.JFrame {
 
         exitButton = new javax.swing.JButton();
         iconUser = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         userField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         logInButton = new javax.swing.JButton();
+        emailField = new javax.swing.JTextField();
         fondoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,41 +58,41 @@ public class Interfaz extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, -1, -1));
+        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 10, -1, -1));
 
         iconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/logo_icon.png"))); // NOI18N
-        getContentPane().add(iconUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("User");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 50, -1));
+        getContentPane().add(iconUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, 180));
 
         userField.setBackground(new java.awt.Color(51, 51, 51));
+        userField.setFont(new java.awt.Font("Euphemia", 1, 16)); // NOI18N
         userField.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 200, -1));
+        userField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userFieldActionPerformed(evt);
+            }
+        });
+        getContentPane().add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 27));
+        userField.getAccessibleContext().setAccessibleDescription("");
 
-        jLabel2.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Password");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        passwordField.setBackground(new java.awt.Color(51, 51, 51));
+        passwordField.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 250, 27));
 
-        jPasswordField1.setBackground(new java.awt.Color(51, 51, 51));
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 200, -1));
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel3.setText("Don't have account? Create");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
+        jLabel3.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel3.setText("Don't have account? Create it");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
 
         logInButton.setBackground(new java.awt.Color(3, 3, 59));
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
-        logInButton.setText("Log In");
-        getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 170, -1));
+        logInButton.setText("Sign In");
+        getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 170, -1));
+
+        emailField.setBackground(new java.awt.Color(51, 51, 51));
+        emailField.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 27));
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
-        getContentPane().add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -96,6 +102,29 @@ public class Interfaz extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
+        // TODO add your handling code her
+        
+    }//GEN-LAST:event_userFieldActionPerformed
+    private void userPlaceHolder(){
+        userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
+        
+        userPlaceHolder.setFont("Euphemia");
+        userPlaceHolder.setColorHolder(Color.gray);
+        userPlaceHolder.setSize(16);
+    }
+    private void passwordPlaceHolder(){
+        passwordPlaceHolder = new com.placeholder.PlaceHolder(passwordField, "password");
+        passwordPlaceHolder.setFont("Euphemia");
+        passwordPlaceHolder.setColorHolder(Color.gray);
+        passwordPlaceHolder.setSize(16);
+    }
+    private void emailPlaceHolder(){
+        emailPlaceHolder = new com.placeholder.PlaceHolder(emailField, "E-mail");
+        emailPlaceHolder.setFont("Euphemia");
+        emailPlaceHolder.setColorHolder(Color.gray);
+        emailPlaceHolder.setSize(16);
+    }
     /**
      * @param args the command line arguments
      */
@@ -113,33 +142,38 @@ public class Interfaz extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sign_In.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz().setVisible(true);
+                new Sign_In().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField emailField;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel fondoLabel;
     private javax.swing.JLabel iconUser;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton logInButton;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
+    private com.placeholder.PlaceHolder userPlaceHolder;
+    private com.placeholder.PlaceHolder passwordPlaceHolder;
+    private com.placeholder.PlaceHolder emailPlaceHolder;
 }
