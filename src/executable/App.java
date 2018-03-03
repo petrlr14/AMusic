@@ -18,15 +18,7 @@ public class App {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-<<<<<<< HEAD
-<<<<<<< HEAD
         Start in=new Start();
-=======
-        Sign_In in=new Sign_In();
->>>>>>> Pedro_Gomez
-=======
-        Start in=new Start();
->>>>>>> ArreglandoProblemasTecnicos
         in.setVisible(true);
     }
     

@@ -10,15 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import formatos.Password;
-=======
-import formato.Password;
->>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
-=======
-import formatos.Password;
->>>>>>> ArreglandoProblemasTecnicos
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 /**
