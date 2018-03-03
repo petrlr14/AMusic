@@ -5,7 +5,9 @@
  */
 package login.interfazGrafica.ventana;
 
+import database.DBQuery;
 import java.awt.Color;
+import password.Password;
 
 
 /**
@@ -20,10 +22,10 @@ public class Sign_In extends javax.swing.JFrame {
     public Sign_In() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
         userPlaceHolder();
         passwordPlaceHolder();   
         emailPlaceHolder();
+        con=new DBQuery();
     }
 
     /**
@@ -76,6 +78,11 @@ public class Sign_In extends javax.swing.JFrame {
 
         passwordField.setBackground(new java.awt.Color(51, 51, 51));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 250, 27));
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
@@ -85,10 +92,20 @@ public class Sign_In extends javax.swing.JFrame {
         logInButton.setBackground(new java.awt.Color(3, 3, 59));
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
         logInButton.setText("Sign In");
+        logInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInButtonActionPerformed1(evt);
+            }
+        });
         getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 170, -1));
 
         emailField.setBackground(new java.awt.Color(51, 51, 51));
         emailField.setForeground(new java.awt.Color(255, 255, 255));
+        emailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 27));
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
@@ -106,6 +123,19 @@ public class Sign_In extends javax.swing.JFrame {
         // TODO add your handling code her
         
     }//GEN-LAST:event_userFieldActionPerformed
+
+    private void logInButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed1
+        // TODO add your handling code here:
+        if(userField.getText().length()==0 || passwordField.getPassword().length==0 || emailField.getText().length()==0){
+            System.out.println("Uno de los campos está vacio");
+        }else{
+            if(con.isIn(Password.chartoPass(passwordField.getPassword()), userField.getText(),true)){
+                System.out.println("Las credenciales ya fueron usadas anteriormente");
+            }else{
+                System.out.println(con.ingresandoADB(userField.getText(), Password.chartoPass(passwordField.getPassword()), emailField.getText()));
+            }
+        }
+    }//GEN-LAST:event_logInButtonActionPerformed1
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         
@@ -176,4 +206,5 @@ public class Sign_In extends javax.swing.JFrame {
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
     private com.placeholder.PlaceHolder emailPlaceHolder;
+    private DBQuery con;
 }
