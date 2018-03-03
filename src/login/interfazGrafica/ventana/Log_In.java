@@ -4,18 +4,15 @@
  * and open the template in the editor.
  */
 package login.interfazGrafica.ventana;
-<<<<<<< HEAD:src/login/interfazGrafica/ventana/Interfaz.java
+
 import database.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
 import password.Password;
-=======
 
 import java.awt.Color;
 
-
->>>>>>> e0f25380b4a318dcf097d81fdc60e6d5b70d8237:src/login/interfazGrafica/ventana/Log_In.java
 /**
  *
  * @author usuario
@@ -28,13 +25,9 @@ public class Log_In extends javax.swing.JFrame {
     public Log_In() {
         initComponents();
         this.setLocationRelativeTo(null);
-<<<<<<< HEAD:src/login/interfazGrafica/ventana/Interfaz.java
-        con=new DBQuery();
-=======
-        
+        con=new DBQuery();        
         userPlaceHolder();
         passwordPlaceHolder();
->>>>>>> e0f25380b4a318dcf097d81fdc60e6d5b70d8237:src/login/interfazGrafica/ventana/Log_In.java
     }
 
     /**
@@ -126,36 +119,29 @@ public class Log_In extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
-<<<<<<< HEAD:src/login/interfazGrafica/ventana/Interfaz.java
+
         // TODO add your handling code here:
         
     }//GEN-LAST:event_userFieldActionPerformed
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
         // TODO add your handling code here:
-        if(userField.getText().length()==0 || jPasswordField1.getPassword().length==0){
+        if(userField.getText().length()==0 || passwordField.getPassword().length==0){
             System.out.println("Uno de los campos está vacio");
         }else{
-            if(con.isIn(Password.chartoPass(jPasswordField1.getPassword()), userField.getText())){
+            if(con.isIn(Password.chartoPass(passwordField.getPassword()), userField.getText())){
                 System.out.println("Exito!!!");
                 userField.setEnabled(false);
-                jPasswordField1.setEnabled(false);
+                passwordField.setEnabled(false);
             }else{
                 System.out.println("fracaso");
                 userField.setText("");
-                jPasswordField1.setText("");
+                passwordField.setText("");
             }
         }
         
     }//GEN-LAST:event_logInButtonActionPerformed
-
-=======
-        // TODO add your handling code here
-       
-        if(userField.getKeyListeners() != null)
-            userField.setText(null);
-        
-    }//GEN-LAST:event_userFieldActionPerformed
+                                     
 
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
@@ -207,8 +193,6 @@ public class Log_In extends javax.swing.JFrame {
             }
         });
     }
->>>>>>> e0f25380b4a318dcf097d81fdc60e6d5b70d8237:src/login/interfazGrafica/ventana/Log_In.java
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel fondoLabel;
@@ -218,11 +202,8 @@ public class Log_In extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
-<<<<<<< HEAD:src/login/interfazGrafica/ventana/Interfaz.java
     private DBQuery con;
-=======
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
 
->>>>>>> e0f25380b4a318dcf097d81fdc60e6d5b70d8237:src/login/interfazGrafica/ventana/Log_In.java
 }

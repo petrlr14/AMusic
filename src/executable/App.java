@@ -6,7 +6,6 @@
 package executable;
 
 import database.*;
-import login.interfazGrafica.ventana.Interfaz;
 /**
  *
  * @author android
@@ -18,8 +17,6 @@ public class App {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Interfaz in=new Interfaz();
-        in.setVisible(true);
     }
     
 }
