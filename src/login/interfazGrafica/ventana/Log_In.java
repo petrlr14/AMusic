@@ -10,7 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
+<<<<<<< HEAD
+import formatos.Password;
+=======
 import formato.Password;
+>>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 /**
@@ -135,12 +139,10 @@ public class Log_In extends javax.swing.JFrame {
         if(userField.getText().length()==0 || passwordField.getPassword().length==0){
             System.out.println("Uno de los campos está vacio");
         }else{
-            if(con.isIn(Password.chartoPass(passwordField.getPassword()), userField.getText())){
-                System.out.println("Exito!!!");
+            if(con.isInLogin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
                 userField.setEnabled(false);
                 passwordField.setEnabled(false);
             }else{
-                System.out.println("fracaso");
                 userField.setText("");
                 passwordField.setText("");
             }

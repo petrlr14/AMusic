@@ -5,9 +5,16 @@
  */
 package login.interfazGrafica.ventana;
 
+import database.DBQuery;
+import formatos.Email;
 import java.awt.Color;
+<<<<<<< HEAD
+import formatos.Password;
+import java.awt.event.*;
+=======
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+>>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
 
 
 /**
@@ -22,10 +29,17 @@ public class Sign_In extends javax.swing.JFrame {
     public Sign_In() {
         initComponents();
         this.setLocationRelativeTo(null);
+<<<<<<< HEAD
+        userPlaceHolder();
+        passwordPlaceHolder();   
+        emailPlaceHolder();
+        con=new DBQuery();
+=======
         
         /*userPlaceHolder();
         passwordPlaceHolder();   
         emailPlaceHolder();*/
+>>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
     }
 
     /**
@@ -100,11 +114,25 @@ public class Sign_In extends javax.swing.JFrame {
         signInButton.setBackground(new java.awt.Color(3, 3, 59));
         signInButton.setForeground(new java.awt.Color(255, 255, 255));
         signInButton.setText("Sign In");
+<<<<<<< HEAD
+        signInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signInButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 170, -1));
+=======
         getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
+>>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
 
         emailField.setBackground(new java.awt.Color(51, 51, 51));
         emailField.setFont(new java.awt.Font("Euphemia", 0, 16)); // NOI18N
         emailField.setForeground(new java.awt.Color(255, 255, 255));
+        emailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailFieldActionPerformed(evt);
+            }
+        });
         getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 27));
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
@@ -122,11 +150,36 @@ public class Sign_In extends javax.swing.JFrame {
         // TODO add your handling code her
         
     }//GEN-LAST:event_userFieldActionPerformed
+<<<<<<< HEAD
+
+    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
+        // TODO add your handling code here:
+        if(!Email.mailRegex(emailField.getText())){
+            emailField.setText("");
+            System.out.println("ingrese un email valido");
+        }
+        
+        if(userField.getText().length()==0 || passwordField.getPassword().length==0 || emailField.getText().length()==0){
+            System.out.println("Uno de los campos está vacio");
+        }else{
+            if(con.isInSignin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
+                con.ingresandoADB(userField.getText(), Password.chartoPass(passwordField.getPassword()), emailField.getText());
+            }else{
+                System.out.println("El nombre de usuario y contraseña ya se encuentran en la base de datos como un solo registro");
+            }
+        }
+    }//GEN-LAST:event_signInButtonActionPerformed
+
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFieldActionPerformed
+=======
     private void jLabel3actionperformed(MouseEvent evt){
         Log_In ventanaLogIn = new Log_In();
         ventanaLogIn.setVisible(true);
         Sign_In.this.dispose();
     }
+>>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         
@@ -190,11 +243,16 @@ public class Sign_In extends javax.swing.JFrame {
     private javax.swing.JLabel fondoLabel;
     private javax.swing.JLabel iconUser;
     private javax.swing.JLabel jLabel3;
+<<<<<<< HEAD
+=======
     private javax.swing.JButton signInButton;
+>>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton signInButton;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
     private com.placeholder.PlaceHolder emailPlaceHolder;
+    private DBQuery con;
 }
