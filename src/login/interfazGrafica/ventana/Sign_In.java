@@ -9,12 +9,19 @@ import database.DBQuery;
 import formatos.Email;
 import java.awt.Color;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import formatos.Password;
 import java.awt.event.*;
 =======
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 >>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
+=======
+import formatos.Password;
+import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+>>>>>>> ArreglandoProblemasTecnicos
 
 
 /**
@@ -30,16 +37,22 @@ public class Sign_In extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ArreglandoProblemasTecnicos
         userPlaceHolder();
         passwordPlaceHolder();   
         emailPlaceHolder();
         con=new DBQuery();
+<<<<<<< HEAD
 =======
         
         /*userPlaceHolder();
         passwordPlaceHolder();   
         emailPlaceHolder();*/
 >>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
+=======
+>>>>>>> ArreglandoProblemasTecnicos
     }
 
     /**
@@ -115,15 +128,22 @@ public class Sign_In extends javax.swing.JFrame {
         signInButton.setForeground(new java.awt.Color(255, 255, 255));
         signInButton.setText("Sign In");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ArreglandoProblemasTecnicos
         signInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signInButtonActionPerformed(evt);
             }
         });
         getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 170, -1));
+<<<<<<< HEAD
 =======
         getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
 >>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
+=======
+        getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
+>>>>>>> ArreglandoProblemasTecnicos
 
         emailField.setBackground(new java.awt.Color(51, 51, 51));
         emailField.setFont(new java.awt.Font("Euphemia", 0, 16)); // NOI18N
@@ -151,6 +171,9 @@ public class Sign_In extends javax.swing.JFrame {
         
     }//GEN-LAST:event_userFieldActionPerformed
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ArreglandoProblemasTecnicos
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         // TODO add your handling code here:
@@ -173,13 +196,19 @@ public class Sign_In extends javax.swing.JFrame {
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> ArreglandoProblemasTecnicos
     private void jLabel3actionperformed(MouseEvent evt){
         Log_In ventanaLogIn = new Log_In();
         ventanaLogIn.setVisible(true);
         Sign_In.this.dispose();
     }
+<<<<<<< HEAD
 >>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
+=======
+>>>>>>> ArreglandoProblemasTecnicos
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         
@@ -244,9 +273,12 @@ public class Sign_In extends javax.swing.JFrame {
     private javax.swing.JLabel iconUser;
     private javax.swing.JLabel jLabel3;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private javax.swing.JButton signInButton;
 >>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
+=======
+>>>>>>> ArreglandoProblemasTecnicos
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton signInButton;
     private javax.swing.JTextField userField;
