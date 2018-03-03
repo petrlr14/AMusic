@@ -63,12 +63,22 @@ public class Start extends javax.swing.JFrame {
         signIn_Button.setFont(new java.awt.Font("Euphemia", 1, 14)); // NOI18N
         signIn_Button.setForeground(new java.awt.Color(255, 255, 255));
         signIn_Button.setText("Sign In");
+        signIn_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signIn_ButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(signIn_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 200, -1));
 
         LogIn_Button.setBackground(new java.awt.Color(0, 0, 51));
         LogIn_Button.setFont(new java.awt.Font("Euphemia", 1, 14)); // NOI18N
         LogIn_Button.setForeground(new java.awt.Color(255, 255, 255));
         LogIn_Button.setText("Log In");
+        LogIn_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogIn_ButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(LogIn_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 200, -1));
 
         jLabel1.setFont(new java.awt.Font("Euphemia", 1, 24)); // NOI18N
@@ -77,6 +87,7 @@ public class Start extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Euphemia", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("The best way to hear music");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
@@ -90,7 +101,21 @@ public class Start extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
-   
+
+    private void LogIn_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogIn_ButtonActionPerformed
+        // TODO add your handling code here:
+        Log_In ventanaLogIn = new Log_In();
+        ventanaLogIn.setVisible(true);
+        Start.this.dispose();
+    }//GEN-LAST:event_LogIn_ButtonActionPerformed
+
+    private void signIn_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signIn_ButtonActionPerformed
+        // TODO add your handling code here:
+        Sign_In ventanaSignIn = new Sign_In();
+        ventanaSignIn.setVisible(true);
+        Start.this.dispose();
+    }//GEN-LAST:event_signIn_ButtonActionPerformed
+
    
    
     /**

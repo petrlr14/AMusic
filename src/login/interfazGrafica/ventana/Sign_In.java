@@ -6,6 +6,8 @@
 package login.interfazGrafica.ventana;
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 /**
@@ -87,6 +89,12 @@ public class Sign_In extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
         jLabel3.setText("Do have account? Log In");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new MouseAdapter(){
+                public void mouseClicked(MouseEvent evt){
+                    jLabel3actionperformed(evt);
+                    
+                }
+        });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, -1, -1));
 
         logInButton.setBackground(new java.awt.Color(3, 3, 59));
@@ -114,6 +122,11 @@ public class Sign_In extends javax.swing.JFrame {
         // TODO add your handling code her
         
     }//GEN-LAST:event_userFieldActionPerformed
+    private void jLabel3actionperformed(MouseEvent evt){
+        Log_In ventanaLogIn = new Log_In();
+        ventanaLogIn.setVisible(true);
+        Sign_In.this.dispose();
+    }
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         
