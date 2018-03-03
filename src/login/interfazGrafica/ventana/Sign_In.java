@@ -42,7 +42,7 @@ public class Sign_In extends javax.swing.JFrame {
         userField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        logInButton = new javax.swing.JButton();
+        signInButton = new javax.swing.JButton();
         emailField = new javax.swing.JTextField();
         fondoLabel = new javax.swing.JLabel();
 
@@ -97,10 +97,10 @@ public class Sign_In extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, -1, -1));
 
-        logInButton.setBackground(new java.awt.Color(3, 3, 59));
-        logInButton.setForeground(new java.awt.Color(255, 255, 255));
-        logInButton.setText("Sign In");
-        getContentPane().add(logInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
+        signInButton.setBackground(new java.awt.Color(3, 3, 59));
+        signInButton.setForeground(new java.awt.Color(255, 255, 255));
+        signInButton.setText("Sign In");
+        getContentPane().add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 170, -1));
 
         emailField.setBackground(new java.awt.Color(51, 51, 51));
         emailField.setFont(new java.awt.Font("Euphemia", 0, 16)); // NOI18N
@@ -190,7 +190,7 @@ public class Sign_In extends javax.swing.JFrame {
     private javax.swing.JLabel fondoLabel;
     private javax.swing.JLabel iconUser;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton logInButton;
+    private javax.swing.JButton signInButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables

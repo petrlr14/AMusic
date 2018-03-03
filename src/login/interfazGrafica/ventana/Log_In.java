@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
-import password.Password;
+import formato.Password;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 /**
