@@ -5,11 +5,18 @@
  */
 package login.interfazGrafica.ventana;
 import database.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
+<<<<<<< HEAD
 import formatos.Password;
+=======
+import formato.Password;
+>>>>>>> cbc25b36e56bbc2185981078b535e48e2baaa8cb
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 /**
  *
  * @author usuario
@@ -82,6 +89,13 @@ public class Log_In extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
         jLabel3.setText("Don't have account? Create it");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new MouseAdapter(){
+                public void mouseClicked(MouseEvent evt){
+                    jLabel3actionperformed(evt);
+                    
+                }
+        });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, -1, -1));
 
         logInButton.setBackground(new java.awt.Color(3, 3, 59));
@@ -112,7 +126,13 @@ public class Log_In extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         
-    }                                         
+    }
+    
+    private void jLabel3actionperformed(MouseEvent evt){
+        Sign_In ventanaSign = new Sign_In();
+        ventanaSign.setVisible(true);
+        Log_In.this.dispose();
+    }
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
