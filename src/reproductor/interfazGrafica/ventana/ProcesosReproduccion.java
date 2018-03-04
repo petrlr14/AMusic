@@ -24,8 +24,8 @@ public class ProcesosReproduccion {
     BufferedInputStream buffer;
     
     public Player player;
-    public int total;
-    public int restante;
+    public long total;
+    public long restante;
     public String fileLocation;
     
     public void stop(){
@@ -53,7 +53,7 @@ public class ProcesosReproduccion {
             
             player = new Player(buffer);
             
-            file.skip(total-restante);
+            file.skip(total - restante);
             
         } catch (JavaLayerException ex) {
             Logger.getLogger(ProcesosReproduccion.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,9 +82,10 @@ public class ProcesosReproduccion {
             
             player = new Player(buffer);
             
+            total = file.available(); //devuelve el total de lo que queda, como inica, devuelve el total de duracion
+        
             fileLocation = path+"";
             
-            total = file.available(); //devuelve el total de lo que queda, como inica, devuelve el total de duracion
         }catch(FileNotFoundException e){
             
         } catch (JavaLayerException ex) {
