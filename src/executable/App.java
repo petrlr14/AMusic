@@ -7,6 +7,8 @@ package executable;
 
 import database.*;
 import login.interfazGrafica.ventana.*;
+import reproductor.*;
+
 /**
  *
  * @author android
@@ -18,8 +20,12 @@ public class App {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Start in=new Start();
-        in.setVisible(true);
+        
+        Explorador ex=new Explorador();
+        ex.abrirExplorador();
+        for(String cancion:ex.getCanciones()){
+            System.out.println(cancion);
+        }
     }
     
 }

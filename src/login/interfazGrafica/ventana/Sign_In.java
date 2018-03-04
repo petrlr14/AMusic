@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import reproductor.Explorador;
 
 
 /**
@@ -154,6 +155,7 @@ public class Sign_In extends javax.swing.JFrame {
                 System.out.println("El nombre de usuario y contraseña ya se encuentran en la base de datos como un solo registro");
             }
         }
+        Explorador ut=new Explorador();
     }//GEN-LAST:event_signInButtonActionPerformed
 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
@@ -194,7 +196,7 @@ public class Sign_In extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
