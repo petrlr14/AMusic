@@ -119,8 +119,8 @@ public class JTableTest extends javax.swing.JFrame {
         Explorador ex=new Explorador();
         String directorio=ex.abrirExplorador();
         String directorioA=directorio;
-        if(ex.getCanciones()!=null){
-            canciones=ex.getCanciones();
+        if(ex.getCanciones(null)!=null){
+            canciones=ex.getCanciones(null);
         }
         List <String[]> Informacion=new ArrayList<String[]>();
         for(String cancion:canciones){

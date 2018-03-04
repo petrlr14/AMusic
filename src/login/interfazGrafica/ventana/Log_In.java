@@ -13,6 +13,11 @@ import javax.swing.JFrame;
 import formatos.Password;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
+import java.util.List;
+import reproductor.Explorador;
+import reproductor.ID3Tag;
+import reproductor.interfazGrafica.ventana.InterfazReproductor;
 /**
  *
  * @author usuario
@@ -138,14 +143,33 @@ public class Log_In extends javax.swing.JFrame {
             if(con.isInLogin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
                 userField.setEnabled(false);
                 passwordField.setEnabled(false);
+                cambiandoPantalla();
+                this.dispose();
             }else{
                 userField.setText("");
                 passwordField.setText("");
             }
-        }
-        
+        }                
     }                                         
 
+    
+    private void cambiandoPantalla(){
+        Explorador ex=new Explorador();
+        String directorio=con.getDirectorioDeAdmin();
+        String directorioA=directorio;
+        if(ex.getCanciones(directorio)!=null){
+            List<String> canciones=ex.getCanciones(directorio);
+            List <String[]> Informacion=new ArrayList<String[]>();
+            for(String cancion:canciones){
+                directorioA+="\\"+cancion;
+                Informacion.add(ID3Tag.getID3TagList(directorioA));
+                directorioA=directorio;
+            }
+            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio);
+            ir.setVisible(true);
+        }
+    }
+    
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         

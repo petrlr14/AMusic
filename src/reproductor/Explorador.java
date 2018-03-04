@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package reproductor;
+import database.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +19,16 @@ public class Explorador {
     private JFileChooser chooser;
     private String folder;
     private List<String> canciones;
+    private DBQuery query;
+    
+    public Explorador(){
+        query=new DBQuery();
+        folder=query.getDirectorioDeAdmin();
+    }
+    
     public String abrirExplorador(){
         String aux=null;
-        chooser=new JFileChooser(new File("C:\\Users\\android\\"));
+        chooser=new JFileChooser(new File(folder));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.setDialogTitle("Seleccione carpeta predeterminada");
         chooser.setFileFilter(new FileFilter() {
@@ -39,12 +47,16 @@ public class Explorador {
         if(resultado==JFileChooser.APPROVE_OPTION){
             return folder=chooser.getSelectedFile().getAbsolutePath(); 
         }else{
-            return folder="C:\\Users\\android\\";
+            return folder;
         }
     }
     
-    public List<String> getCanciones(){
+    public List<String> getCanciones(String directorio){
         canciones=new ArrayList<String>();
+        if(directorio!=""){
+            folder=directorio;
+            query.updateDirectorioAdmin(folder);
+        }
         File[] archivosCanciones=new File(folder).listFiles();
         if(archivosCanciones!=null){
             for(File file: archivosCanciones){

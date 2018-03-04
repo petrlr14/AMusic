@@ -5,10 +5,18 @@
  */
 package reproductor.interfazGrafica.ventana;
 
+import database.DBQuery;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import reproductor.Explorador;
+import reproductor.ID3Tag;
 
 /**
  *
@@ -19,10 +27,39 @@ public class InterfazReproductor extends javax.swing.JFrame {
     /**
      * Creates new form InterfazReproductor
      */
-    public InterfazReproductor() {
+    public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio) {
         initComponents();
+        this.informacion=Informacion;
+        datos=new Object[Informacion.size()][4];
+        this.canciones=Canciones;
+        for(int i=0; i<Informacion.size(); i++){
+            for(int j=0; j<4; j++){
+                datos[i][j]=Informacion.get(i)[j];
+            }
+        }
         
-        
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                datos,
+                new String [] {
+                    "Title", "Artist", "Album", "Genero"
+                })
+        );
+        jTable1.setAutoCreateRowSorter(true);
+        ListSelectionModel model=jTable1.getSelectionModel();
+        model.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!model.isSelectionEmpty()){
+                    int row=jTable1.getSelectedRow();
+                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
+                    datoSeleccionado[1]=jTable1.getValueAt(row, 1).toString();
+                    datoSeleccionado[2]=jTable1.getValueAt(row, 2).toString();
+                    datoSeleccionado[3]=jTable1.getValueAt(row, 3).toString();
+                }
+                indiceObtenido=getIndex(datoSeleccionado);
+                System.out.println(directorio+"\\"+canciones.get(indiceObtenido));
+            }
+        });
     }
 
     /**
@@ -44,6 +81,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,6 +149,21 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel2.setText("The best way");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 117, 970, 400));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/wallpaper.jpg"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -129,60 +183,48 @@ public class InterfazReproductor extends javax.swing.JFrame {
     }//GEN-LAST:event_pauseMouseReleased
 
     private void selectFileMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectFileMouseReleased
-        FileFilter filter = new FileNameExtensionFilter("MP3 Files", "mp3","mpeg3"); //se crea un filtro para obviar lo que no sea de formatos espexificados
-        
-        JFileChooser chooser = new JFileChooser("F:\\Music"); //se elige una ruta determinada para abrir el explorador
-        chooser.addChoosableFileFilter(filter); //se agrega el filtro al objeto que contiene la ruta
-        
-        int returnVal = chooser.showOpenDialog(null);
-        
-        if(returnVal == JFileChooser.APPROVE_OPTION){ //si se da click o se selecciona la opcion de open (aprove)
-            File file = chooser.getSelectedFile(); //se guarda la ruta del archivo
-            String song = file + ""; //lo convertimos de tipo file a string
-            
-            String name = chooser.getSelectedFile().getName();
-            display.setText(name);
-            
-            
-            procesos.play(song); //le mandamos la ruta a nuestro metodo play
+        Explorador ex=new Explorador();
+        String directorio=ex.abrirExplorador();
+        String directorioA=directorio;
+        if(ex.getCanciones("")!=null){
+            canciones=ex.getCanciones(directorio);
         }
+        List <String[]> Informacion=new ArrayList<String[]>();
+        for(String cancion:canciones){
+            directorioA+="\\"+cancion;
+            Informacion.add(ID3Tag.getID3TagList(directorioA));
+            directorioA=directorio;
+        }
+        
+        this.informacion=Informacion;
+        datos=new Object[Informacion.size()][4];
+        for(int i=0; i<Informacion.size(); i++){
+            for(int j=0; j<4; j++){
+                datos[i][j]=Informacion.get(i)[j];
+            }
+        }
+        
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                datos,
+                new String [] {
+                    "Title", "Artist", "Album", "Genero"
+                })
+        );
+        jTable1.setAutoCreateRowSorter(true);
         
     }//GEN-LAST:event_selectFileMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    
+    
+    
+    private int getIndex(String[] infoObtenida){
+        for(String[] info:this.informacion){
+            if(info[0]==infoObtenida[0]&&info[1]==infoObtenida[1]&&info[2]==infoObtenida[2]&&info[3]==infoObtenida[3]){
+                return this.informacion.indexOf(info);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazReproductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazReproductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazReproductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazReproductor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfazReproductor().setVisible(true);
-            }
-        });
+        return 1;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel back;
@@ -191,11 +233,21 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private javax.swing.JLabel forward;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel pause;
     private javax.swing.JLabel play;
     private javax.swing.JLabel selectFile;
     private javax.swing.JLabel stop;
     // End of variables declaration//GEN-END:variables
-    ProcesosReproduccion procesos = new ProcesosReproduccion();
+    private ProcesosReproduccion procesos = new ProcesosReproduccion();
+    private Explorador exp;
+    private String directorio;
+    String[] datoSeleccionado=new String[4];
+    private List<String[]> informacion;
+    private int indiceObtenido;
+    private List<String> canciones;
+    private DBQuery query;
+    private Object[][] datos;
 }
