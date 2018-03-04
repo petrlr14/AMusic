@@ -83,4 +83,34 @@ public class DBQuery {
         return true;
     }
     
+    public String getDirectorioDeAdmin(){
+        String datos="";
+        try{
+            con=conexion.open();
+            Statement stmt=con.createStatement();
+            String query="SELECT directorio FROM usuarios WHERE idrol=0";
+            ResultSet rs=stmt.executeQuery(query);
+            while (rs.next()){
+               datos=rs.getString("directorio");
+            }
+        }catch(SQLException e){
+            System.out.println("Algo salio mal");
+        }finally{
+            conexion.close(con);
+        }
+        return datos;
+    }
+    
+    public void updateDirectorioAdmin(String nuevoDir){
+        try{
+            con=conexion.open();
+            Statement stmt=con.createStatement();
+            String query ="UPDATE usuarios SET directorio='"+nuevoDir+"'"+"WHERE username='admin'";
+            stmt.executeUpdate(query);
+            con.close();
+        }catch(SQLException e){
+            System.out.println("Error");
+        }
+    }
+    
 }
