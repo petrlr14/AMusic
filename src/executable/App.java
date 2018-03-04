@@ -29,20 +29,19 @@ public class App {
         Explorador ex=new Explorador();
         String directorio=ex.abrirExplorador();
         String directorioA=directorio;
-        List<String> canciones=ex.getCanciones();
-        List <String[]> Informacion=new ArrayList<String[]>();
-        for(String cancion:canciones){
-            directorioA+="\\"+cancion;
-            Informacion.add(ID3Tag.getID3TagList(directorioA));
-            directorioA=directorio;
+        if(ex.getCanciones()!=null){
+            List<String> canciones=ex.getCanciones();
+            List <String[]> Informacion=new ArrayList<String[]>();
+            for(String cancion:canciones){
+                directorioA+="\\"+cancion;
+                Informacion.add(ID3Tag.getID3TagList(directorioA));
+                directorioA=directorio;
+            }
+            JTableTest jtt=new JTableTest(Informacion, canciones, directorioA);
+        jtt.setVisible(true);
         }
         
-        for(String[] listas:Informacion){
-            for(String info:listas){
-                System.out.println(info);
-            }
-            System.out.println("=======================");
-        }
+        
         
         
     }

@@ -20,10 +20,9 @@ public class Explorador {
     private List<String> canciones;
     public String abrirExplorador(){
         String aux=null;
-        chooser=new JFileChooser();
+        chooser=new JFileChooser(new File("C:\\Users\\android\\"));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.setDialogTitle("Seleccione carpeta predeterminada");
-        
         chooser.setFileFilter(new FileFilter() {
             @Override
             public boolean accept(File f) {
@@ -40,21 +39,26 @@ public class Explorador {
         if(resultado==JFileChooser.APPROVE_OPTION){
             return folder=chooser.getSelectedFile().getAbsolutePath(); 
         }else{
-            return aux;
+            return folder="C:\\Users\\android\\";
         }
     }
     
     public List<String> getCanciones(){
         canciones=new ArrayList<String>();
-        File[] archivosCanciones=new File(this.chooser.getSelectedFile().getAbsolutePath()).listFiles();
-        for(File file: archivosCanciones){
-            if(file.isFile()){
-                if(esMP3(file.getName())){
-                    canciones.add(file.getName());
+        File[] archivosCanciones=new File(folder).listFiles();
+        if(archivosCanciones!=null){
+            for(File file: archivosCanciones){
+                if(file.isFile()){
+                    if(esMP3(file.getName())){
+                        canciones.add(file.getName());
+                    }
                 }
             }
+            return canciones;
+        }else{
+            return null;
         }
-        return canciones;
+        
     }
     
     private boolean esMP3(String cancion){
