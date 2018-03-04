@@ -6,6 +6,7 @@
 package reproductor.interfazGrafica.ventana;
 
 import database.DBQuery;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import reproductor.Explorador;
 import reproductor.ID3Tag;
 
@@ -35,15 +37,19 @@ public class InterfazReproductor extends javax.swing.JFrame {
         for(int i=0; i<Informacion.size(); i++){
             for(int j=0; j<4; j++){
                 datos[i][j]=Informacion.get(i)[j];
+                
             }
         }
-        
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                datos,
+        DefaultTableModel Model=new DefaultTableModel(datos,
                 new String [] {
                     "Title", "Artist", "Album", "Genero"
-                })
-        );
+                }){
+                    @Override
+                    public boolean isCellEditable(int row, int column){
+                        return false;
+                    }
+                };
+        jTable1.setModel(Model);
         jTable1.setAutoCreateRowSorter(true);
         ListSelectionModel model=jTable1.getSelectionModel();
         model.addListSelectionListener(new ListSelectionListener() {
@@ -60,8 +66,18 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 System.out.println(directorio+"\\"+canciones.get(indiceObtenido));
             }
         });
+        
     }
-
+    
+    
+    public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getClickCount());;
+        if (e.getClickCount() == 2) {
+            int row = jTable1.getSelectedRow();
+            System.out.println(row);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -203,7 +219,6 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 datos[i][j]=Informacion.get(i)[j];
             }
         }
-        
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 datos,
                 new String [] {
@@ -250,4 +265,10 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private List<String> canciones;
     private DBQuery query;
     private Object[][] datos;
+    private List<String> songs;
+    private List<String> artistas;
+    private List<String> albumes;
+    private List<String> genero;
+    
+    
 }

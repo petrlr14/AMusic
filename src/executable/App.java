@@ -8,7 +8,9 @@ package executable;
 import database.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import login.interfazGrafica.ventana.*;
 import org.blinkenlights.jid3.MP3File;
 import reproductor.*;
@@ -28,6 +30,7 @@ public class App {
         // TODO code application logic here
         Start st=new Start();
         st.setVisible(true);
+        
     }
     
 }

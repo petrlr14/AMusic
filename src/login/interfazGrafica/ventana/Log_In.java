@@ -155,10 +155,10 @@ public class Log_In extends javax.swing.JFrame {
     
     private void cambiandoPantalla(){
         Explorador ex=new Explorador();
-        String directorio=con.getDirectorioDeAdmin();
+        String directorio=ex.abrirExplorador();
         String directorioA=directorio;
-        if(ex.getCanciones(directorio)!=null){
-            List<String> canciones=ex.getCanciones(directorio);
+        if(ex.getCanciones("")!=null){
+            List<String> canciones=ex.getCanciones("");
             List <String[]> Informacion=new ArrayList<String[]>();
             for(String cancion:canciones){
                 directorioA+="\\"+cancion;
