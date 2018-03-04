@@ -97,7 +97,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         display.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(display, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 440, 20));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/logo4.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/logo.png"))); // NOI18N
         getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Euphemia", 1, 30)); // NOI18N
