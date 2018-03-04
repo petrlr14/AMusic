@@ -6,8 +6,13 @@
 package executable;
 
 import database.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import login.interfazGrafica.ventana.*;
+import org.blinkenlights.jid3.MP3File;
 import reproductor.*;
+
 
 /**
  *
@@ -22,10 +27,24 @@ public class App {
         // TODO code application logic here
         
         Explorador ex=new Explorador();
-        ex.abrirExplorador();
-        for(String cancion:ex.getCanciones()){
-            System.out.println(cancion);
+        String directorio=ex.abrirExplorador();
+        String directorioA=directorio;
+        List<String> canciones=ex.getCanciones();
+        List <String[]> Informacion=new ArrayList<String[]>();
+        for(String cancion:canciones){
+            directorioA+="\\"+cancion;
+            Informacion.add(ID3Tag.getID3TagList(directorioA));
+            directorioA=directorio;
         }
+        
+        for(String[] listas:Informacion){
+            for(String info:listas){
+                System.out.println(info);
+            }
+            System.out.println("=======================");
+        }
+        
+        
     }
     
 }

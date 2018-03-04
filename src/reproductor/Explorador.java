@@ -18,7 +18,6 @@ public class Explorador {
     private JFileChooser chooser;
     private String folder;
     private List<String> canciones;
-    
     public String abrirExplorador(){
         String aux=null;
         chooser=new JFileChooser();
