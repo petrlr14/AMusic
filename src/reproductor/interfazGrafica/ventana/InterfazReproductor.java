@@ -689,7 +689,6 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private List<String> canciones;
     private DBQuery query;
     private Object[][] datos;
-<<<<<<< HEAD
     private List<String> songs;
     private List<String> artistas;
     private List<String> albumes;
@@ -702,13 +701,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private Set<String> uniqueGenero;
     
     
-<<<<<<< HEAD
-=======
     private int xMouse;
     private int yMouse;
->>>>>>> 8b9d003f1ba8fe8105856f5437ed4a89f015c58a
-=======
     private List<Integer> indicesDecanciones;
-    
->>>>>>> Cambio_de_Categorio
 }
