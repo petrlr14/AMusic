@@ -24,9 +24,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import login.interfazGrafica.ventana.Log_In;
+
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 import reproductor.Explorador;
 import reproductor.ID3Tag;
 
@@ -39,9 +43,14 @@ public class InterfazReproductor extends javax.swing.JFrame {
     /**
      * Creates new form InterfazReproductor
      */
-    public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio) {
+    public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio, boolean isAdmin) {
         initComponents();
+
+        Log_In username = new Log_In();
+        userName.setText(username.getUserName());
+
         this.setLocationRelativeTo(null);
+
         this.informacion=Informacion;
         this.directorio=directorio;
         canciones=Canciones;
@@ -84,6 +93,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
                      System.out.println("Se ha hecho un click");
                 }
                 if(e.getClickCount()==2){
+                    procesos.stop();
+                    procesos.play(direccionPlayer);
                     System.out.println("Se ha hecho doble click");
                 }
              }});
@@ -97,9 +108,14 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 }
                 indiceObtenido=getIndex(datoSeleccionado,0);
                 songAsociadosADetalles=new ArrayList<String>();
-                    List<Integer>m=getCanciones(datoSeleccionado[0], 1);
+                List<Integer>m=getCanciones(datoSeleccionado[0], 0);
                     for(Integer c:m){
-                        System.out.println(directorio+"\\"+canciones.get(c));
+                        if(directorio.charAt(directorio.length()-1)=='\\'){
+                            direccionPlayer=(directorio+canciones.get(c));
+                        } else {
+                            direccionPlayer=(directorio+"\\"+canciones.get(c));
+                        }
+                        
                     }
             }
         });
@@ -107,7 +123,11 @@ public class InterfazReproductor extends javax.swing.JFrame {
         
     }
     
-    
+    private void disableSelectFile(boolean admin){
+        if(!admin){
+            selectFile.setVisible(false);
+        }
+    }
     private void cambiarACancion(){
         datos=new Object[songs.size()][1];
         for(int i=0; i<songs.size(); i++){
@@ -256,6 +276,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         genderOption = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        userName = new javax.swing.JLabel();
         artistOption = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
@@ -361,7 +383,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel3.setText("Song");
         songOption.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
 
-        jPanel1.add(songOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 290, 60));
+        jPanel1.add(songOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 290, 60));
 
         albumOption.setOpaque(false);
         albumOption.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -379,7 +401,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel4.setText("Album");
         albumOption.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
 
-        jPanel1.add(albumOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 290, 60));
+        jPanel1.add(albumOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 290, 60));
 
         genderOption.setOpaque(false);
         genderOption.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,7 +419,14 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel5.setText("Gender");
         genderOption.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
 
-        jPanel1.add(genderOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 290, 60));
+        jPanel1.add(genderOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 290, 60));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/userIcon3.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
+
+        userName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        userName.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 130, 50));
 
         artistOption.setOpaque(false);
         artistOption.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -415,11 +444,12 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel6.setText("Artist");
         artistOption.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
 
-        jPanel1.add(artistOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 290, 60));
+        jPanel1.add(artistOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 290, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 530));
 
         exit.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        exit.setForeground(new java.awt.Color(255, 255, 255));
         exit.setText("X");
         exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -682,6 +712,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -691,6 +722,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private javax.swing.JLabel selectFile;
     private javax.swing.JPanel songOption;
     private javax.swing.JLabel stop;
+    private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
     private ProcesosReproduccion procesos = new ProcesosReproduccion();
     private Explorador exp;
@@ -701,6 +733,10 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private List<String> canciones;
     private DBQuery query;
     private Object[][] datos;
+
+
+
+
     private List<String> songs;
     private List<String> artistas;
     private List<String> albumes;
@@ -711,12 +747,20 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private Set<String> uniqueArtistas;
     private Set<String> uniqueAlbumes;
     private Set<String> uniqueGenero;
+                   
+    private String direccionPlayer;
     
     
+
+
+
     private int xMouse;
     private int yMouse;
+
     private List<Integer> indicesDecanciones;
+    
     
     private boolean permitirCambio=true;
     private int contadoPermitirCambio=0;
+
 }

@@ -113,4 +113,28 @@ public class DBQuery {
         }
     }
     
+    public boolean isAdmin(String usernName, String pass){
+        String dato="";
+        try{
+            con=conexion.open();
+            Statement stmt=con.createStatement();
+            String query="SELECT idrol FROM usuarios WHERE username='"+usernName+"' AND pass='"+pass+"'";
+            ResultSet rs=stmt.executeQuery(query);
+            while (rs.next()){
+               dato=rs.getString("idrol");
+            }
+            if(dato.matches("0")){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException e){
+            System.out.println("Ocurrio un error");
+        }finally{
+            conexion.close(con);
+            return false;
+        }
+
+    }
+    
 }

@@ -176,6 +176,7 @@ public class Log_In extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No ha escrito una contraseña", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             if(con.isInLogin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
+                username = userField.getText();
                 userField.setEnabled(false);
                 passwordField.setEnabled(false);
                 cambiandoPantalla();
@@ -202,7 +203,7 @@ public class Log_In extends javax.swing.JFrame {
                 Informacion.add(ID3Tag.getID3TagList(directorioA));
                 directorioA=directorio;
             }
-            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio);
+            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio, admin.isAdmin(userField.getText(), Password.chartoPass(passwordField.getPassword())));
             ir.setVisible(true);
         }
     }
@@ -225,7 +226,9 @@ public class Log_In extends javax.swing.JFrame {
 /********************************************************************/    
     
 
-    
+    public String getUserName(){
+        return username;
+    }
     /**
      * @param args the command line arguments
      */
@@ -272,8 +275,12 @@ public class Log_In extends javax.swing.JFrame {
     private javax.swing.JTextField userField;
     // End of variables declaration                   
     private DBQuery con;
+    private DBQuery admin;
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
+    
+    private String username;
+    
     private int xMouse;
     private int yMouse;
 
