@@ -176,6 +176,7 @@ public class Log_In extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No ha escrito una contraseña", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             if(con.isInLogin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
+                username = userField.getText();
                 userField.setEnabled(false);
                 passwordField.setEnabled(false);
                 cambiandoPantalla();
@@ -225,7 +226,9 @@ public class Log_In extends javax.swing.JFrame {
 /********************************************************************/    
     
 
-    
+    public String getUserName(){
+        return username;
+    }
     /**
      * @param args the command line arguments
      */
@@ -274,6 +277,9 @@ public class Log_In extends javax.swing.JFrame {
     private DBQuery con;
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
+    
+    private String username;
+    
     private int xMouse;
     private int yMouse;
 
