@@ -72,7 +72,7 @@ public class DBQuery {
         try{
             con=conexion.open();
             Statement stmt=con.createStatement();            
-            String query="INSERT INTO usuarios VALUES('"+pass+"', '"+user+"',0, '"+email+"')";
+            String query="INSERT INTO usuarios VALUES('"+pass+"', '"+user+"',1, '"+email+"')";
             stmt.executeUpdate(query);
         }catch(SQLException e){
             System.out.println("No se pudo agregar el usuario");
@@ -111,6 +111,30 @@ public class DBQuery {
         }catch(SQLException e){
             System.out.println("Error");
         }
+    }
+    
+    public boolean isAdmin(String usernName, String pass){
+        String dato="";
+        try{
+            con=conexion.open();
+            Statement stmt=con.createStatement();
+            String query="SELECT idrol FROM usuarios WHERE username='"+usernName+"' AND pass='"+pass+"'";
+            ResultSet rs=stmt.executeQuery(query);
+            while (rs.next()){
+               dato=rs.getString("idrol");
+            }
+            if(dato.matches("0")){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException e){
+            System.out.println("Ocurrio un error");
+        }finally{
+            conexion.close(con);
+            return false;
+        }
+
     }
     
 }

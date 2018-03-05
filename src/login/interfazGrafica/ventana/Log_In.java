@@ -193,7 +193,7 @@ public class Log_In extends javax.swing.JFrame {
 /***************PROCESO PARA CAMBIAR DE PANTALLA************/
     private void cambiandoPantalla(){
         Explorador ex=new Explorador();
-        String directorio=ex.abrirExplorador();
+        String directorio=con.getDirectorioDeAdmin();
         String directorioA=directorio;
         if(ex.getCanciones("")!=null){
             List<String> canciones=ex.getCanciones("");
@@ -203,7 +203,7 @@ public class Log_In extends javax.swing.JFrame {
                 Informacion.add(ID3Tag.getID3TagList(directorioA));
                 directorioA=directorio;
             }
-            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio);
+            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio, admin.isAdmin(userField.getText(), Password.chartoPass(passwordField.getPassword())));
             ir.setVisible(true);
         }
     }
@@ -275,6 +275,7 @@ public class Log_In extends javax.swing.JFrame {
     private javax.swing.JTextField userField;
     // End of variables declaration                   
     private DBQuery con;
+    private DBQuery admin;
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
     

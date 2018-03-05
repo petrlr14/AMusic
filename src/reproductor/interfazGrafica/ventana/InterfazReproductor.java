@@ -9,6 +9,7 @@ import database.DBQuery;
 import formatos.Tabla;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -42,7 +43,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     /**
      * Creates new form InterfazReproductor
      */
-    public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio) {
+    public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio, boolean isAdmin) {
         initComponents();
 
         Log_In username = new Log_In();
@@ -86,6 +87,17 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 };
         jTable1.setModel(Model);
         jTable1.setAutoCreateRowSorter(true);
+        jTable1.addMouseListener(new MouseAdapter(){
+             public void mouseClicked(java.awt.event.MouseEvent e) {
+                if(e.getClickCount()==1){
+                     System.out.println("Se ha hecho un click");
+                }
+                if(e.getClickCount()==2){
+                    procesos.stop();
+                    procesos.play(direccionPlayer);
+                    System.out.println("Se ha hecho doble click");
+                }
+             }});
         ListSelectionModel model=jTable1.getSelectionModel();
         model.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -95,13 +107,27 @@ public class InterfazReproductor extends javax.swing.JFrame {
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
                 }
                 indiceObtenido=getIndex(datoSeleccionado,0);
+                songAsociadosADetalles=new ArrayList<String>();
+                List<Integer>m=getCanciones(datoSeleccionado[0], 0);
+                    for(Integer c:m){
+                        if(directorio.charAt(directorio.length()-1)=='\\'){
+                            direccionPlayer=(directorio+canciones.get(c));
+                        } else {
+                            direccionPlayer=(directorio+"\\"+canciones.get(c));
+                        }
+                        
+                    }
             }
         });
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
         
     }
     
-    
+    private void disableSelectFile(boolean admin){
+        if(!admin){
+            selectFile.setVisible(false);
+        }
+    }
     private void cambiarACancion(){
         datos=new Object[songs.size()][1];
         for(int i=0; i<songs.size(); i++){
@@ -117,21 +143,12 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 };
         jTable1.setModel(Model);
         jTable1.setAutoCreateRowSorter(true);
-        ListSelectionModel model=jTable1.getSelectionModel();
-        model.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(!model.isSelectionEmpty()){
-                    int row=jTable1.getSelectedRow();
-                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-                }                    
-                mostrarCancionesRelacionadas(0);
-            }
-        });
+        
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
     }
     
     private void cambiarAAlbum(){
+        contadoPermitirCambio=0;
         datos=new Object[uniqueAlbumes.size()][1];
         Object[] array=uniqueAlbumes.toArray();
         for(int i=0; i<uniqueAlbumes.size(); i++){
@@ -154,13 +171,17 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 if(!model.isSelectionEmpty()){
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-                    mostrarCancionesRelacionadas(2);
+                    if(contadoPermitirCambio==0){
+                        mostrarCancionesRelacionadas(2);
+                        contadoPermitirCambio++;
+                    }   
                 }
             }
         });
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
     }
     private void cambiarAGenero(){
+        contadoPermitirCambio=0;
         datos=new Object[uniqueGenero.size()][1];
         Object[] array=uniqueGenero.toArray();
         for(int i=0; i<uniqueGenero.size(); i++){
@@ -178,18 +199,21 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         ListSelectionModel model=jTable1.getSelectionModel();
         model.addListSelectionListener(new ListSelectionListener() {
-            @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!model.isSelectionEmpty()){
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-                    mostrarCancionesRelacionadas(3);
+                    if(contadoPermitirCambio==0){
+                        mostrarCancionesRelacionadas(3);
+                        contadoPermitirCambio++;
+                    }
                 }
             }
         });
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
     }
     private void cambiarAArtistas(){
+        contadoPermitirCambio=0;
         datos=new Object[uniqueArtistas.size()][1];
         Object[] array=uniqueArtistas.toArray();
         for(int i=0; i<uniqueArtistas.size(); i++){
@@ -207,14 +231,16 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         ListSelectionModel model=jTable1.getSelectionModel();
         model.addListSelectionListener(new ListSelectionListener() {
-            @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(!model.isSelectionEmpty()){
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-                    mostrarCancionesRelacionadas(1);
-                    
-                }            
+                    System.out.println(datoSeleccionado[0]+"898");
+                    if(contadoPermitirCambio==0){
+                        mostrarCancionesRelacionadas(1);
+                        contadoPermitirCambio++;
+                    }
+                }
             }
         });
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
@@ -635,11 +661,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     }
     
     /*
-    songAsociadosADetalles=new ArrayList<String>();
-                    List<Integer>m=getCanciones(datoSeleccionado[0], 1);
-                    for(Integer c:m){
-                        System.out.println(directorio+"\\"+canciones.get(c));
-                    }
+    
     */
     
     private void mostrarCancionesRelacionadas(int tipoDeDato){
@@ -650,6 +672,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
             datos[cont][0]=songs.get(x);
             cont++;
         }
+        
         DefaultTableModel Model=new DefaultTableModel(datos,
                 new String [] {
                     "Songs"}){
@@ -660,19 +683,19 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 };
         jTable1.setModel(Model);
         jTable1.setAutoCreateRowSorter(true);
-        ListSelectionModel model=jTable1.getSelectionModel();
-        model.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(!model.isSelectionEmpty()){
-                    int row=jTable1.getSelectedRow();
-                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-                    System.out.println(datoSeleccionado[0]);
+        jTable1.addMouseListener(new MouseAdapter(){
+             public void mouseClicked(java.awt.event.MouseEvent e) {
+                if(e.getClickCount()==1){
+                     System.out.println("Se ha hecho un click");
                 }
-            }
-        });
+                if(e.getClickCount()==2){
+                    System.out.println("Se ha hecho doble click");
+                }
+             }});
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
     }
+        
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel albumOption;
@@ -711,6 +734,9 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private DBQuery query;
     private Object[][] datos;
 
+
+
+
     private List<String> songs;
     private List<String> artistas;
     private List<String> albumes;
@@ -721,8 +747,11 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private Set<String> uniqueArtistas;
     private Set<String> uniqueAlbumes;
     private Set<String> uniqueGenero;
+                   
+    private String direccionPlayer;
     
     
+
 
 
     private int xMouse;
@@ -730,5 +759,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
     private List<Integer> indicesDecanciones;
     
+    
+    private boolean permitirCambio=true;
+    private int contadoPermitirCambio=0;
 
 }
