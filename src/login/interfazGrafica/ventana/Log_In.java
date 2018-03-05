@@ -176,6 +176,7 @@ public class Log_In extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No ha escrito una contraseña", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             if(con.isInLogin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
+                username = userField.getText();
                 userField.setEnabled(false);
                 passwordField.setEnabled(false);
                 System.out.println();
@@ -203,7 +204,11 @@ public class Log_In extends javax.swing.JFrame {
                 Informacion.add(ID3Tag.getID3TagList(directorioA));
                 directorioA=directorio;
             }
+<<<<<<< HEAD
             InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio,con.isAdmin(userField.getText(), Password.chartoPass(passwordField.getPassword())));
+=======
+            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio, admin.isAdmin(userField.getText(), Password.chartoPass(passwordField.getPassword())));
+>>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
             ir.setVisible(true);
         }
     }
@@ -226,7 +231,9 @@ public class Log_In extends javax.swing.JFrame {
 /********************************************************************/    
     
 
-    
+    public String getUserName(){
+        return username;
+    }
     /**
      * @param args the command line arguments
      */
@@ -273,8 +280,12 @@ public class Log_In extends javax.swing.JFrame {
     private javax.swing.JTextField userField;
     // End of variables declaration                   
     private DBQuery con;
+    private DBQuery admin;
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
+    
+    private String username;
+    
     private int xMouse;
     private int yMouse;
 
