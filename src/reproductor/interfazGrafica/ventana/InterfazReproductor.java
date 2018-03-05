@@ -97,6 +97,8 @@ public class InterfazReproductor extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         play.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -241,6 +243,16 @@ public class InterfazReproductor extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 530));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/wallpaper.jpg"))); // NOI18N
+        background.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                backgroundMouseDragged(evt);
+            }
+        });
+        background.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                backgroundMousePressed(evt);
+            }
+        });
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -321,6 +333,20 @@ public class InterfazReproductor extends javax.swing.JFrame {
         resetColor(genderOption);
         resetColor(albumOption);
     }//GEN-LAST:event_artistOptionMousePressed
+
+    private void backgroundMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backgroundMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_backgroundMousePressed
+
+    private void backgroundMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backgroundMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_backgroundMouseDragged
     
     
     private void setColor(JPanel panel){
@@ -332,8 +358,6 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private void resetColor(JPanel panel){
         panel.setBackground(new Color(60,63,65));
         panel.setOpaque(false);
-        
-        System.out.println("oliii");
         
     }
     
@@ -353,7 +377,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private javax.swing.JPanel artistOption;
     private javax.swing.JLabel back;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel display;
+    public static javax.swing.JLabel display;
     private javax.swing.JLabel forward;
     private javax.swing.JPanel genderOption;
     private javax.swing.JLabel jLabel1;
@@ -381,4 +405,6 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private List<String> canciones;
     private DBQuery query;
     private Object[][] datos;
+    private int xMouse;
+    private int yMouse;
 }
