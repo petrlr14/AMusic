@@ -6,19 +6,26 @@
 package reproductor.interfazGrafica.ventana;
 
 import database.DBQuery;
+import formatos.Tabla;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import reproductor.Explorador;
 import reproductor.ID3Tag;
 
@@ -33,19 +40,36 @@ public class InterfazReproductor extends javax.swing.JFrame {
      */
     public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.informacion=Informacion;
-        datos=new Object[Informacion.size()][4];
-        this.canciones=Canciones;
+        
+        canciones=Canciones;
+        
+        songs=new ArrayList<String>();
+        artistas=new ArrayList<String>();
+        albumes=new ArrayList<String>();
+        genero=new ArrayList<String>();
+
         for(int i=0; i<Informacion.size(); i++){
-            for(int j=0; j<4; j++){
-                datos[i][j]=Informacion.get(i)[j];
-                
-            }
+            songs.add(Informacion.get(i)[0]);
+            artistas.add(Informacion.get(i)[1]);
+            albumes.add(Informacion.get(i)[2]);
+            genero.add(Informacion.get(i)[3]);
+        }
+        
+        uniqueArtistas=new HashSet<String>(artistas);
+        uniqueAlbumes=new HashSet<String>(albumes);
+        uniqueGenero=new HashSet<String>(genero);
+
+        
+        datos=new Object[Informacion.size()][1];
+        
+        for(int i=0; i<songs.size(); i++){
+            datos[i][0]=songs.get(i);
         }
         DefaultTableModel Model=new DefaultTableModel(datos,
                 new String [] {
-                    "Title", "Artist", "Album", "Genero"
-                }){
+                    "Songs"}){
                     @Override
                     public boolean isCellEditable(int row, int column){
                         return false;
@@ -60,14 +84,12 @@ public class InterfazReproductor extends javax.swing.JFrame {
                 if(!model.isSelectionEmpty()){
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-                    datoSeleccionado[1]=jTable1.getValueAt(row, 1).toString();
-                    datoSeleccionado[2]=jTable1.getValueAt(row, 2).toString();
-                    datoSeleccionado[3]=jTable1.getValueAt(row, 3).toString();
                 }
                 indiceObtenido=getIndex(datoSeleccionado);
                 System.out.println(directorio+"\\"+canciones.get(indiceObtenido));
             }
         });
+        Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
         
     }
     
@@ -401,6 +423,10 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private List<String> artistas;
     private List<String> albumes;
     private List<String> genero;
+    
+    private Set<String> uniqueArtistas;
+    private Set<String> uniqueAlbumes;
+    private Set<String> uniqueGenero;
     
     
 }
