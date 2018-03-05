@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/executable/App.java</file>
             <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/login/interfazGrafica/ventana/Start.java</file>
+            <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/reproductor/Explorador.java</file>
+            <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/reproductor/JTableTest.java</file>
             <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/database/DBQuery.java</file>
             <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/login/interfazGrafica/ventana/Sign_In.java</file>
+            <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/reproductor/interfazGrafica/ventana/InterfazReproductor.java</file>
             <file>file:/C:/Users/android/Documents/NetBeansProjects/AMusic/src/login/interfazGrafica/ventana/Log_In.java</file>
         </group>
     </open-files>
