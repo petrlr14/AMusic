@@ -6,10 +6,12 @@
 package reproductor.interfazGrafica.ventana;
 
 import database.DBQuery;
+import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -83,6 +85,15 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        songOption = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        albumOption = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        genderOption = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        artistOption = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -142,7 +153,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Euphemia", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("AMusic");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Euphemia", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,7 +173,72 @@ public class InterfazReproductor extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 117, 970, 400));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 790, 400));
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        songOption.setOpaque(false);
+        songOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                songOptionMousePressed(evt);
+            }
+        });
+        songOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Song");
+        songOption.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
+
+        jPanel1.add(songOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 290, 60));
+
+        albumOption.setOpaque(false);
+        albumOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                albumOptionMousePressed(evt);
+            }
+        });
+        albumOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Album");
+        albumOption.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
+
+        jPanel1.add(albumOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 290, 60));
+
+        genderOption.setOpaque(false);
+        genderOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                genderOptionMousePressed(evt);
+            }
+        });
+        genderOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Gender");
+        genderOption.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
+
+        jPanel1.add(genderOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 290, 60));
+
+        artistOption.setOpaque(false);
+        artistOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                artistOptionMousePressed(evt);
+            }
+        });
+        artistOption.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Artist");
+        artistOption.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 15, -1, -1));
+
+        jPanel1.add(artistOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 290, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 530));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/wallpaper.jpg"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -213,7 +289,53 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jTable1.setAutoCreateRowSorter(true);
         
     }//GEN-LAST:event_selectFileMouseReleased
+
+    private void songOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_songOptionMousePressed
+        // TODO add your handling code here:
+        setColor(songOption);
+        resetColor(albumOption);
+        resetColor(genderOption);
+        resetColor(artistOption);
+    }//GEN-LAST:event_songOptionMousePressed
+
+    private void albumOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_albumOptionMousePressed
+        // TODO add your handling code here:
+        setColor(albumOption);
+        resetColor(songOption);
+        resetColor(genderOption);
+        resetColor(artistOption);
+    }//GEN-LAST:event_albumOptionMousePressed
+
+    private void genderOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genderOptionMousePressed
+        // TODO add your handling code here:
+        setColor(genderOption);
+        resetColor(songOption);
+        resetColor(albumOption);
+        resetColor(artistOption);
+    }//GEN-LAST:event_genderOptionMousePressed
+
+    private void artistOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_artistOptionMousePressed
+        // TODO add your handling code here:
+        setColor(artistOption);
+        resetColor(songOption);
+        resetColor(genderOption);
+        resetColor(albumOption);
+    }//GEN-LAST:event_artistOptionMousePressed
     
+    
+    private void setColor(JPanel panel){
+        panel.setBackground(new Color(0, 0, 0));
+        panel.setOpaque(true);
+        
+    }
+    
+    private void resetColor(JPanel panel){
+        panel.setBackground(new Color(60,63,65));
+        panel.setOpaque(false);
+        
+        System.out.println("oliii");
+        
+    }
     
     
     private int getIndex(String[] infoObtenida){
@@ -227,18 +349,27 @@ public class InterfazReproductor extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel albumOption;
+    private javax.swing.JPanel artistOption;
     private javax.swing.JLabel back;
     private javax.swing.JLabel background;
     private javax.swing.JLabel display;
     private javax.swing.JLabel forward;
+    private javax.swing.JPanel genderOption;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel pause;
     private javax.swing.JLabel play;
     private javax.swing.JLabel selectFile;
+    private javax.swing.JPanel songOption;
     private javax.swing.JLabel stop;
     // End of variables declaration//GEN-END:variables
     private ProcesosReproduccion procesos = new ProcesosReproduccion();
