@@ -1,0 +1,199 @@
+[33mcommit 2f64b0f5b1cc8395c884233bdbcc5f556645fbe6[m[33m ([m[1;36mHEAD -> [m[1;32mAbriendo_Explorador[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m, [m[1;32mPedro_Gomez[m[33m)[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 13:02:12 2018 -0600
+
+    ahora si todo listo
+
+[33mcommit d036485d57fcbb0cb84d4ada7ad0ce44356f61ab[m
+Merge: db312c4 8e2e9a5
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 12:55:39 2018 -0600
+
+    subiendo todo
+
+[33mcommit 8e2e9a583973ef9ce72f5f1cc003d2ee9ee4b4ef[m[33m ([m[1;32mArreglandoProblemasTecnicos[m[33m)[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 12:54:40 2018 -0600
+
+    Todo listo para subir login-signin completo
+
+[33mcommit 10b70f6a7a16369c1cc0b548564f1aaa69020614[m
+Merge: 3db3d80 cbc25b3
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 12:45:54 2018 -0600
+
+    casi listo el arreglo
+
+[33mcommit db312c4c146ea4b675077e1048c095c65f571363[m
+Merge: 98be71f 150934b
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 12:23:41 2018 -0600
+
+    ahora todo junto
+
+[33mcommit 98be71f57ee1856368bad5f5579292db08f7d218[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 12:22:57 2018 -0600
+
+    Uniendo el login y signin completo
+
+[33mcommit 150934b3599472ac5963fde863885db79dc80678[m
+Merge: 3db3d80 cbc25b3
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 12:16:07 2018 -0600
+
+    haciendo merge
+
+[33mcommit cbc25b36e56bbc2185981078b535e48e2baaa8cb[m
+Merge: 7f88eab afbac65
+Author: Pedro Gómez <31825365+petrlr14@users.noreply.github.com>
+Date:   Sat Mar 3 12:11:30 2018 -0600
+
+    Merge pull request #4 from Meight9/Antonio_Pertuz
+    
+    Antonio pertuz
+
+[33mcommit afbac6548dfea6a58de63fe2ed8604747fe395b8[m
+Author: Meight <7ace.lex@gmail.com>
+Date:   Sat Mar 3 12:08:19 2018 -0600
+
+    arreglando errores y cambio de nombres de variables
+
+[33mcommit 6ee3a1146196270606c5698799d11e1dcbeaa4f8[m
+Author: Meight <7ace.lex@gmail.com>
+Date:   Sat Mar 3 11:44:40 2018 -0600
+
+    Interacciones completas
+
+[33mcommit ebf155ccb97fea99039d44cf7381f5d699ca0b71[m
+Author: Meight <7ace.lex@gmail.com>
+Date:   Sat Mar 3 11:12:58 2018 -0600
+
+    creando interaccion en el login y ventana start
+
+[33mcommit 3db3d80253226e72bbba489922a585087883c09f[m[33m ([m[1;32mSignIn[m[33m)[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 10:39:24 2018 -0600
+
+    Sign In ingresa correctamente en la base, login completo a excepcion del label para sign in
+
+[33mcommit 8b2fd7a03a24451558ae8c034d7b427f3889d1b1[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 02:15:48 2018 -0600
+
+    Sign in parcialmente completo
+
+[33mcommit 7f88eab1bdce0d665670dd56068f6f93f01d7615[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Sat Mar 3 00:05:27 2018 -0600
+
+    login_completo
+
+[33mcommit 86c1a3c1d6b9cfe501d7d4ef4b2c3fb9332d5277[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 23:43:10 2018 -0600
+
+    quitando cosas que aparecieron
+
+[33mcommit 317ce09a28201217655ee94d0f3a36d6273b0519[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 23:37:59 2018 -0600
+
+    resolviendo problemas en codigo
+
+[33mcommit 7d191673eab782f3c1cb95cbdbef27d4106c9fd5[m
+Merge: 6ae1210 23a012a
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 23:17:51 2018 -0600
+
+    Merge branch 'Meight9-Antonio_Pertuz'
+
+[33mcommit 23a012a71125c9683fa55826a420e88e8aea026a[m[33m ([m[1;32mMeight9-Antonio_Pertuz[m[33m)[m
+Merge: 6ae1210 e0f2538
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 23:17:09 2018 -0600
+
+    antes de unir todo el login
+
+[33mcommit e0f25380b4a318dcf097d81fdc60e6d5b70d8237[m
+Author: Meight <7ace.lex@gmail.com>
+Date:   Fri Mar 2 23:08:35 2018 -0600
+
+    creacion de sign in y cambios de diseño
+
+[33mcommit 6ae1210f305a5db25238ac20785005b3dc439239[m[33m ([m[1;32mLoginDB[m[33m)[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 22:35:05 2018 -0600
+
+    Login funciona con interaccion de la BD
+
+[33mcommit d63ad16b170e5e1ba643473d7bd728fd0e62306a[m[33m ([m[1;31morigin/Pedro_Gomez[m[33m)[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 20:53:45 2018 -0600
+
+    Antes de empezar a unir DB con login
+
+[33mcommit 76335b3f511cdf4b9c9a0388cf3d6acb7089eae8[m
+Merge: 9ce2546 feac548
+Author: Pedro Gómez <31825365+petrlr14@users.noreply.github.com>
+Date:   Fri Mar 2 20:19:39 2018 -0600
+
+    Merge pull request #1 from Meight9/Antonio_Pertuz
+    
+    Antonio pertuz
+
+[33mcommit feac5483e0664c57c68d9ac7006e56ea6412de4e[m
+Author: Meight <7ace.lex@gmail.com>
+Date:   Fri Mar 2 20:11:11 2018 -0600
+
+    agregando login para sign in
+
+[33mcommit f903e1e7e650b7a2dee3bcc61d8d7aacfaf562c2[m
+Author: Meight <7ace.lex@gmail.com>
+Date:   Fri Mar 2 20:10:37 2018 -0600
+
+    agregando imagenes de login a gitignore
+
+[33mcommit 9ce25462fab8f6adb70f3d24d1077d1cb93ad8df[m
+Merge: 310c917 c4b260a
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 13:54:08 2018 -0600
+
+    Merge branch 'Pedro_Gomez'
+
+[33mcommit 310c917433c4f827e7ab53c11aeda778b14e9137[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 13:53:54 2018 -0600
+
+    antes de hacer merge la primera vez con DB
+
+[33mcommit c4b260adaa9e83ce9a16a5416b7259ff8747b54e[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 13:52:45 2018 -0600
+
+    Antes de hacer merge con maste, uniendo DB
+
+[33mcommit 1a803faf10aa44bb1047c48500053938bf4f51e4[m
+Merge: 0e05ef6 e261d47
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 13:48:08 2018 -0600
+
+    Merge branch 'DB' into Pedro_Gomez
+
+[33mcommit 0e05ef689f323b548ab4dde6f3def2524894e096[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 13:47:47 2018 -0600
+
+    primer commit
+
+[33mcommit e261d47eb37ae3daac8471e2c90989deb9361e42[m[33m ([m[1;32mDB[m[33m)[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 13:46:21 2018 -0600
+
+    la aplicacion de conecta a la base satisfactoriamente
+
+[33mcommit 15d23fe1ef113e5519b09031867868c6a53a428f[m[33m ([m[1;31morigin/Antonio_Pertuz[m[33m)[m
+Author: Pedro Gómez <00057616@uca.edu.sv>
+Date:   Fri Mar 2 11:12:56 2018 -0600
+
+    Creando poyecto
