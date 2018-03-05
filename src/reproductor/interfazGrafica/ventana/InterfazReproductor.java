@@ -94,6 +94,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         artistOption = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        exit = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -152,12 +153,12 @@ public class InterfazReproductor extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/logo.png"))); // NOI18N
         getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Euphemia", 1, 30)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("AMusic");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Euphemia", 1, 30)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("The best way");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, -1, -1));
@@ -182,6 +183,9 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
         songOption.setOpaque(false);
         songOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                songOptionMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 songOptionMousePressed(evt);
             }
@@ -197,6 +201,9 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
         albumOption.setOpaque(false);
         albumOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                albumOptionMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 albumOptionMousePressed(evt);
             }
@@ -212,6 +219,9 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
         genderOption.setOpaque(false);
         genderOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                genderOptionMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 genderOptionMousePressed(evt);
             }
@@ -227,6 +237,9 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
         artistOption.setOpaque(false);
         artistOption.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                artistOptionMouseEntered(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 artistOptionMousePressed(evt);
             }
@@ -241,6 +254,16 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jPanel1.add(artistOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 290, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 530));
+
+        exit.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        exit.setText("X");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reproductor/interfazGrafica/imagenes/wallpaper.jpg"))); // NOI18N
         background.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -347,6 +370,43 @@ public class InterfazReproductor extends javax.swing.JFrame {
         
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_backgroundMouseDragged
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void songOptionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_songOptionMouseEntered
+        // TODO add your handling code here:
+        setColor(songOption);
+        resetColor(albumOption);
+        resetColor(genderOption);
+        resetColor(artistOption);
+    }//GEN-LAST:event_songOptionMouseEntered
+
+    private void albumOptionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_albumOptionMouseEntered
+        // TODO add your handling code here:
+        setColor(albumOption);
+        resetColor(songOption);
+        resetColor(genderOption);
+        resetColor(artistOption);
+    }//GEN-LAST:event_albumOptionMouseEntered
+
+    private void genderOptionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genderOptionMouseEntered
+        // TODO add your handling code here:
+        setColor(genderOption);
+        resetColor(songOption);
+        resetColor(albumOption);
+        resetColor(artistOption);
+    }//GEN-LAST:event_genderOptionMouseEntered
+
+    private void artistOptionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_artistOptionMouseEntered
+        // TODO add your handling code here:
+        setColor(artistOption);
+        resetColor(songOption);
+        resetColor(genderOption);
+        resetColor(albumOption);
+    }//GEN-LAST:event_artistOptionMouseEntered
     
     
     private void setColor(JPanel panel){
@@ -378,6 +438,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private javax.swing.JLabel back;
     private javax.swing.JLabel background;
     public static javax.swing.JLabel display;
+    private javax.swing.JLabel exit;
     private javax.swing.JLabel forward;
     private javax.swing.JPanel genderOption;
     private javax.swing.JLabel jLabel1;
