@@ -24,10 +24,9 @@ public class Explorador {
     public Explorador(){
         query=new DBQuery();
         folder=query.getDirectorioDeAdmin();
-        System.out.println(folder);
     }
     
-    public String abrirExplorador(){
+    public String abrirExplorador(){//Metodo para abrir ventana y buscar un directorio
         String aux=null;
         chooser=new JFileChooser(new File(folder));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -52,7 +51,7 @@ public class Explorador {
         }
     }
     
-    public List<String> getCanciones(String directorio){
+    public List<String> getCanciones(String directorio){//Devuelve las canciones en el directorio
         canciones=new ArrayList<String>();
         if(directorio!=""){
             folder=directorio;
@@ -74,7 +73,7 @@ public class Explorador {
         
     }
     
-    private boolean esMP3(String cancion){
+    private boolean esMP3(String cancion){//Metodo para identificar si el archivo es un formato disponible
         int indice=cancion.length()-4;
         String extension1=".mp3";
         String extension2=".Mp3";

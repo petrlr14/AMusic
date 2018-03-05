@@ -10,7 +10,7 @@ package formatos;
  * @author android
  */
 public class Password {
-    public static String chartoPass(char[] pass){
+    public static String chartoPass(char[] pass){//Metodo que convierte el tipo de dato devuelto por un jpasswordfiel, devuelve la contraseña ya encriptada
         String contrasena="";
         for(char cont:pass){
             contrasena+=cont;
@@ -18,7 +18,7 @@ public class Password {
         return MD5(contrasena);
     }
     
-    public static String MD5(String contrasena){
+    public static String MD5(String contrasena){//Metodo de encriptacion
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
             byte[] array = md.digest(contrasena.getBytes());

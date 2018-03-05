@@ -197,7 +197,9 @@ public class Sign_In extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El nombre de usuario y contraseña ya se encuentran en la base de datos como un solo registro", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        Explorador ut=new Explorador();
+        Log_In login=new Log_In();
+        login.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_signInButtonActionPerformed
     
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed

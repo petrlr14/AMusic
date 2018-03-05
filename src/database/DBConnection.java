@@ -13,7 +13,7 @@ import java.sql.*;
  */
 public class DBConnection {
     
-    public Connection open(){
+    public Connection open(){//Metodo con el que se establece la conexion con la base de datos
         
         String connString="jdbc:postgresql://localhost:5432/users";
         String user="postgres";
@@ -32,7 +32,7 @@ public class DBConnection {
         }
     }
     
-    public void close(Connection conexion){
+    public void close(Connection conexion){//Metodo para cerrar conexion
         try{
             conexion.close();
         }

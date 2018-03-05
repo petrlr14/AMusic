@@ -19,7 +19,7 @@ public class ID3Tag {
     private static File file;
     private static String[] datosCancion;
     
-    public static String[] getID3TagList(String direccion){
+    public static String[] getID3TagList(String direccion){//Metodo para poder obtener toda la informacion de una cancion
         String direccionCompleta=direccion;
         String[] datos=null;
         try{

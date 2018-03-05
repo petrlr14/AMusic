@@ -7,6 +7,7 @@ package database;
 
 import formatos.Password;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +36,7 @@ public class DBQuery {
             stmt.close();
             conexion.close(con);
         }catch(SQLException e){
-            System.out.println("Ocurrio algun error");
+            JOptionPane.showMessageDialog(null, "Error en base de datos", "Ocurrio un error", JOptionPane.WARNING_MESSAGE);
         }finally{
             return datos;
         }
@@ -44,13 +45,12 @@ public class DBQuery {
     public boolean isInLogin(String contra, String user){//boolean entrada es para ingresar un usuario a la base, y salida para ingresar a la app
         String[] aux=buscandoElementos(contra, user);
         if(aux==null){
-            System.out.println("No se encuentra en la base");
             return false;
         }else if(user.matches(aux[0])){//exclusivo para ver login 
             System.out.println("Exito");    
             return true; 
         }else{
-            System.out.println("contraseña o username erroneos");
+            JOptionPane.showMessageDialog(null, "Ingreso uno o dos datos erroneos","Datos erroneos",  JOptionPane.WARNING_MESSAGE);
             return false;
         }
     }
@@ -58,10 +58,9 @@ public class DBQuery {
     public boolean isInSignin(String contra, String user){
         String[] aux=buscandoElementos(contra, user);
         if(aux==null){
-            System.out.println("Exito");
+            JOptionPane.showMessageDialog(null, "Exito! Ahora está registrado","Exito",  JOptionPane.WARNING_MESSAGE);
             return true;
         }else if(user.matches(aux[0])){
-            System.out.println("Ya esta registrado");
             return false;
         }else{
             System.out.println("Exito");
@@ -76,7 +75,7 @@ public class DBQuery {
             String query="INSERT INTO usuarios VALUES('"+pass+"', '"+user+"',1, '"+email+"')";
             stmt.executeUpdate(query);
         }catch(SQLException e){
-            System.out.println("No se pudo agregar el usuario");
+            JOptionPane.showMessageDialog(null, "Error en base de datos", "Ocurrio un error", JOptionPane.WARNING_MESSAGE);
             return false;
         }finally{
             conexion.close(con);
@@ -95,7 +94,7 @@ public class DBQuery {
                datos=rs.getString("directorio");
             }
         }catch(SQLException e){
-            System.out.println("Algo salio mal");
+            JOptionPane.showMessageDialog(null, "Error en base de datos", "Ocurrio un error", JOptionPane.WARNING_MESSAGE);
         }finally{
             conexion.close(con);
         }
@@ -110,7 +109,7 @@ public class DBQuery {
             stmt.executeUpdate(query);
             con.close();
         }catch(SQLException e){
-            System.out.println("Error");
+            JOptionPane.showMessageDialog(null, "Error en base de datos", "Ocurrio un error", JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -130,11 +129,11 @@ public class DBQuery {
                 return false;
             }
         }catch(SQLException e){
-            System.out.println("Ocurrio un error");
+            JOptionPane.showMessageDialog(null, "Error en base de datos", "Ocurrio un error", JOptionPane.WARNING_MESSAGE);
         }finally{
             conexion.close(con);
-            return false;
         }
+        return false;
 
     }
     

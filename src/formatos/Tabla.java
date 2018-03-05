@@ -13,7 +13,7 @@ import javax.swing.table.TableModel;
  *
  * @author android
  */
-public class Tabla {
+public class Tabla {//Metodo para darle formato a la jtable utlizado para visualizar la playlist
     public static void setCellsAlignment(JTable table, int alignment)
     {
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();

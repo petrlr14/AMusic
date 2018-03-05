@@ -13,9 +13,10 @@ import java.util.regex.*;
  */
 public class Email {
     
+    //Regex utilizado para la validacion
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     
-    public static boolean mailRegex(String email){
+    public static boolean mailRegex(String email){//Validacion para el correo electronico
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
         return matcher.find();
     }
