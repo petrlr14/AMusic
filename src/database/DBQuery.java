@@ -5,6 +5,7 @@
  */
 package database;
 
+import formatos.Password;
 import java.sql.*;
 
 /**
@@ -111,6 +112,34 @@ public class DBQuery {
         }catch(SQLException e){
             System.out.println("Error");
         }
+    }
+    
+    public boolean isAdmin(String usernName, String pass){
+        String dato="";
+        try{
+            con=conexion.open();
+            Statement stmt=con.createStatement();
+            System.out.println(usernName+" "+pass);
+            String query="SELECT idrol FROM usuarios WHERE username='"+usernName+"' AND pass='"+pass+"'";
+            ResultSet rs=stmt.executeQuery(query);
+            while (rs.next()){
+               dato=rs.getString("idrol");
+                System.out.println(dato);
+            }
+            System.out.println(dato);
+            if(dato.matches("0")){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException e){
+            System.out.println("Ocurrio un error");
+        }finally{
+            conexion.close(con);
+            
+        }
+        return false;
+
     }
     
 }

@@ -178,6 +178,7 @@ public class Log_In extends javax.swing.JFrame {
             if(con.isInLogin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
                 userField.setEnabled(false);
                 passwordField.setEnabled(false);
+                System.out.println();
                 cambiandoPantalla();
                 this.dispose();
             }else{
@@ -202,7 +203,7 @@ public class Log_In extends javax.swing.JFrame {
                 Informacion.add(ID3Tag.getID3TagList(directorioA));
                 directorioA=directorio;
             }
-            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio);
+            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio,con.isAdmin(userField.getText(), Password.chartoPass(passwordField.getPassword())));
             ir.setVisible(true);
         }
     }
