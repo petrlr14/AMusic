@@ -119,21 +119,11 @@ public class DBQuery {
         try{
             con=conexion.open();
             Statement stmt=con.createStatement();
-<<<<<<< HEAD
-            System.out.println(usernName+" "+pass);
-=======
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
             String query="SELECT idrol FROM usuarios WHERE username='"+usernName+"' AND pass='"+pass+"'";
             ResultSet rs=stmt.executeQuery(query);
             while (rs.next()){
                dato=rs.getString("idrol");
-<<<<<<< HEAD
-                System.out.println(dato);
             }
-            System.out.println(dato);
-=======
-            }
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
             if(dato.matches("0")){
                 return true;
             }else{
@@ -143,14 +133,8 @@ public class DBQuery {
             System.out.println("Ocurrio un error");
         }finally{
             conexion.close(con);
-<<<<<<< HEAD
-            
-        }
-        return false;
-=======
             return false;
         }
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
 
     }
     

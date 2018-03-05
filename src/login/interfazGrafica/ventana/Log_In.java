@@ -204,11 +204,7 @@ public class Log_In extends javax.swing.JFrame {
                 Informacion.add(ID3Tag.getID3TagList(directorioA));
                 directorioA=directorio;
             }
-<<<<<<< HEAD
-            InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio,con.isAdmin(userField.getText(), Password.chartoPass(passwordField.getPassword())));
-=======
             InterfazReproductor ir=new InterfazReproductor(Informacion, canciones, directorio, admin.isAdmin(userField.getText(), Password.chartoPass(passwordField.getPassword())));
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
             ir.setVisible(true);
         }
     }

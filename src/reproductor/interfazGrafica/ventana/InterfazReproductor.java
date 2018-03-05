@@ -43,11 +43,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
     /**
      * Creates new form InterfazReproductor
      */
-<<<<<<< HEAD
-    public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio, boolean admin) {
-=======
     public InterfazReproductor(List<String[]> Informacion, List<String> Canciones, String directorio, boolean isAdmin) {
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
         initComponents();
 
         Log_In username = new Log_In();
@@ -58,7 +54,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         this.informacion=Informacion;
         this.directorio=directorio;
         canciones=Canciones;
-        selectFile.setVisible(admin);
+        selectFile.setVisible(isAdmin);
         songs=new ArrayList<String>();
         artistas=new ArrayList<String>();
         albumes=new ArrayList<String>();
@@ -94,13 +90,9 @@ public class InterfazReproductor extends javax.swing.JFrame {
         jTable1.addMouseListener(new MouseAdapter(){
              public void mouseClicked(java.awt.event.MouseEvent e) {
                 if(e.getClickCount()==2){
-<<<<<<< HEAD
-                    System.out.println(direccionPlayer);
-=======
                     procesos.stop();
                     procesos.play(direccionPlayer);
                     System.out.println("Se ha hecho doble click");
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
                 }
              }});
         ListSelectionModel model=jTable1.getSelectionModel();
@@ -109,16 +101,10 @@ public class InterfazReproductor extends javax.swing.JFrame {
             public void valueChanged(ListSelectionEvent e) {
                 if(!model.isSelectionEmpty()){
                     int row=jTable1.getSelectedRow();
-                    
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
-<<<<<<< HEAD
-                    List<Integer>m=getCanciones(datoSeleccionado[0], 0);
-=======
                 }
-                indiceObtenido=getIndex(datoSeleccionado,0);
                 songAsociadosADetalles=new ArrayList<String>();
                 List<Integer>m=getCanciones(datoSeleccionado[0], 0);
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
                     for(Integer c:m){
                         if(directorio.charAt(directorio.length()-1)=='\\'){
                             direccionPlayer=(directorio+canciones.get(c));
@@ -127,7 +113,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
                         }
                         
                     }
-                }
+                
                 
             }
         });
@@ -767,20 +753,10 @@ public class InterfazReproductor extends javax.swing.JFrame {
 
     private int xMouse;
     private int yMouse;
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
     private List<Integer> indicesDecanciones;
     
     
     private boolean permitirCambio=true;
     private int contadoPermitirCambio=0;
-<<<<<<< HEAD
     
-    private String direccionPlayer;
-=======
-
->>>>>>> 7b539cbe66003901efd344e72b59291d25c6cb9f
 }
