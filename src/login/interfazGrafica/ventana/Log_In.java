@@ -11,6 +11,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
 import formatos.Password;
+import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
@@ -113,14 +114,46 @@ public class Log_In extends javax.swing.JFrame {
 
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
+        
+        fondoLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                fondoLabelMouseDragged(evt);
+            }
+        });
+        fondoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fondoLabelMousePressed(evt);
+            }
+        });
+        
         getContentPane().add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, -1));
+        
 
         pack();
     }// </editor-fold>                        
+    
+    
+    /*********MOVIMIENTO DE VENTANAS***********/
+    private void fondoLabelMousePressed(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+       xMouse = evt.getX(); //se consiguen las coordenadas de donde se ha presionado
+       yMouse = evt.getY(); 
+    }                                       
 
+    private void fondoLabelMouseDragged(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen(); //se consiguen las coordenadas del mouse mientras se va moviendo este mismo
+        int y = evt.getYOnScreen();
+        
+        this.setLocation(x - xMouse, y - yMouse); //la locacion actual de la ventana (en movimiento) va a ser la coordenada en movimiento menos las coordenadas de onde se presiono
+    }    
+    
+    /*******************************************/
+    
+    /***************ACCIONES LOS BOTONES**********************/
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        System.exit(0);
+        System.exit(0); //metodo exit nos permite que al presionar el boton, se cierre el programa
     }                                          
 
     private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -129,16 +162,18 @@ public class Log_In extends javax.swing.JFrame {
         
     }
     
-    private void jLabel3actionperformed(MouseEvent evt){
-        Sign_In ventanaSign = new Sign_In();
-        ventanaSign.setVisible(true);
-        Log_In.this.dispose();
+    private void jLabel3actionperformed(MouseEvent evt){ //metodo para poder acceder a la ventana "signIn si el usuario no tiene cuenta"
+        Sign_In ventanaSign = new Sign_In(); //se crea un nuevo objeto del mismo tipo de la ventana que queremos abrir
+        ventanaSign.setVisible(true); //se hace visible o se levanta la nueva ventana
+        Log_In.this.dispose(); //se cierra la ventana actual accediendo a un metodo de esta clase
     }
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        if(userField.getText().length()==0 || passwordField.getPassword().length==0){
-            System.out.println("Uno de los campos está vacio");
+        if(userField.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "No ha escrito nombre de usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        }else if(passwordField.getPassword().length==0){
+            JOptionPane.showMessageDialog(null, "No ha escrito una contraseña", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             if(con.isInLogin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
                 userField.setEnabled(false);
@@ -148,11 +183,13 @@ public class Log_In extends javax.swing.JFrame {
             }else{
                 userField.setText("");
                 passwordField.setText("");
+                JOptionPane.showMessageDialog(null, "Usted no se ha registrado en la mejor plataforma para escuchar musica en el mundo", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }                
     }                                         
-
+/***********************************************/
     
+/***************PROCESO PARA CAMBIAR DE PANTALLA************/
     private void cambiandoPantalla(){
         Explorador ex=new Explorador();
         String directorio=ex.abrirExplorador();
@@ -169,7 +206,9 @@ public class Log_In extends javax.swing.JFrame {
             ir.setVisible(true);
         }
     }
+/*****************************************************************/    
     
+/*********************PLACEHOLDERS EN TEXTFIELD**************************/
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         
@@ -183,6 +222,8 @@ public class Log_In extends javax.swing.JFrame {
         passwordPlaceHolder.setColorHolder(Color.gray);
         passwordPlaceHolder.setSize(16);
     }
+/********************************************************************/    
+    
 
     
     /**
@@ -233,5 +274,7 @@ public class Log_In extends javax.swing.JFrame {
     private DBQuery con;
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
+    private int xMouse;
+    private int yMouse;
 
 }
