@@ -192,7 +192,7 @@ public class Log_In extends javax.swing.JFrame {
 /***************PROCESO PARA CAMBIAR DE PANTALLA************/
     private void cambiandoPantalla(){
         Explorador ex=new Explorador();
-        String directorio=ex.abrirExplorador();
+        String directorio=con.getDirectorioDeAdmin();
         String directorioA=directorio;
         if(ex.getCanciones("")!=null){
             List<String> canciones=ex.getCanciones("");

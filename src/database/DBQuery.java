@@ -72,7 +72,7 @@ public class DBQuery {
         try{
             con=conexion.open();
             Statement stmt=con.createStatement();            
-            String query="INSERT INTO usuarios VALUES('"+pass+"', '"+user+"',0, '"+email+"')";
+            String query="INSERT INTO usuarios VALUES('"+pass+"', '"+user+"',1, '"+email+"')";
             stmt.executeUpdate(query);
         }catch(SQLException e){
             System.out.println("No se pudo agregar el usuario");
