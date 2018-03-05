@@ -92,6 +92,16 @@ public class Start extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
+        fondoLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                fondoLabelMouseDragged(evt);
+            }
+        });
+        fondoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fondoLabelMousePressed(evt);
+            }
+        });
         getContentPane().add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, -1));
 
         pack();
@@ -115,6 +125,20 @@ public class Start extends javax.swing.JFrame {
         ventanaSignIn.setVisible(true);
         Start.this.dispose();
     }//GEN-LAST:event_signIn_ButtonActionPerformed
+
+    private void fondoLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fondoLabelMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_fondoLabelMousePressed
+
+    private void fondoLabelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fondoLabelMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        
+        this.setLocation(x - xMouse, y - yMouse);
+    }//GEN-LAST:event_fondoLabelMouseDragged
 
    
    
@@ -172,4 +196,6 @@ public class Start extends javax.swing.JFrame {
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
     private com.placeholder.PlaceHolder emailPlaceHolder;
+    private int xMouse;
+    private int yMouse;
 }

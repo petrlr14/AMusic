@@ -9,6 +9,7 @@ import database.DBQuery;
 import formatos.Email;
 import java.awt.Color;
 import formatos.Password;
+import javax.swing.JOptionPane;
 import java.awt.event.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -125,10 +126,46 @@ public class Sign_In extends javax.swing.JFrame {
         getContentPane().add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 27));
 
         fondoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/interfazGrafica/imagenes/wallpaper_login_3.jpg"))); // NOI18N
+        fondoLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter(){
+
+            public void mouseDragged(java.awt.event.MouseEvent evt){
+                fondoLabelMouseDragged(evt);
+            }
+        });
+
+        fondoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fondoLabelMousePressed(evt);
+            }
+        });
+
         getContentPane().add(fondoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
+    
+/*********MOVIMIENTO DE VENTANAS***********/    
+    private void fondoLabelMousePressed(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+       xMouse = evt.getX();
+       yMouse = evt.getY();
+    }                                       
+
+    private void fondoLabelMouseDragged(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        
+        this.setLocation(x - xMouse, y - yMouse);
+    }    
+/**********************************************/
+    
+    
+    
+    
+/***************ACCIONES LOS BOTONES**********************/
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
@@ -143,21 +180,26 @@ public class Sign_In extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!Email.mailRegex(emailField.getText())){
             emailField.setText("");
-            System.out.println("ingrese un email valido");
+            JOptionPane.showMessageDialog(null, "ingrese un email valido", "E-MAIL INVALIDO", JOptionPane.WARNING_MESSAGE);
         }
         
         if(userField.getText().length()==0 || passwordField.getPassword().length==0 || emailField.getText().length()==0){
-            System.out.println("Uno de los campos está vacio");
+            JOptionPane.showMessageDialog(null, "No ha escrito su nombre de usuario", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }else if(passwordField.getPassword().length==0){
+            JOptionPane.showMessageDialog(null, "No ha escrito su contraseña", "Error", JOptionPane.ERROR_MESSAGE);
+        }else if(emailField.getText().length()==0){
+            JOptionPane.showMessageDialog(null, "No ha escrito su cooreo", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             if(con.isInSignin(Password.chartoPass(passwordField.getPassword()), userField.getText())){
                 con.ingresandoADB(userField.getText(), Password.chartoPass(passwordField.getPassword()), emailField.getText());
             }else{
-                System.out.println("El nombre de usuario y contraseña ya se encuentran en la base de datos como un solo registro");
+                JOptionPane.showMessageDialog(null, "El nombre de usuario y contraseña ya se encuentran en la base de datos como un solo registro", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         Explorador ut=new Explorador();
     }//GEN-LAST:event_signInButtonActionPerformed
-
+    
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
@@ -166,6 +208,10 @@ public class Sign_In extends javax.swing.JFrame {
         ventanaLogIn.setVisible(true);
         Sign_In.this.dispose();
     }
+/**************************************************************/  
+    
+    
+/*********************PLACEHOLDERS EN TEXTFIELD**************************/
     private void userPlaceHolder(){
         userPlaceHolder = new com.placeholder.PlaceHolder(userField, "username");
         
@@ -185,6 +231,11 @@ public class Sign_In extends javax.swing.JFrame {
         emailPlaceHolder.setColorHolder(Color.gray);
         emailPlaceHolder.setSize(16);
     }
+/****************************************************************************/
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -236,5 +287,9 @@ public class Sign_In extends javax.swing.JFrame {
     private com.placeholder.PlaceHolder userPlaceHolder;
     private com.placeholder.PlaceHolder passwordPlaceHolder;
     private com.placeholder.PlaceHolder emailPlaceHolder;
+    
     private DBQuery con;
+
+    private int xMouse;
+    private int yMouse;
 }
