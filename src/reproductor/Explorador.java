@@ -24,6 +24,7 @@ public class Explorador {
     public Explorador(){
         query=new DBQuery();
         folder=query.getDirectorioDeAdmin();
+        folder="C:\\";
     }
     
     public String abrirExplorador(){

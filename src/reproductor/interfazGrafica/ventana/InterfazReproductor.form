@@ -76,9 +76,6 @@
       <Events>
         <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pauseMouseReleased"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="pause.setVisible(false);"/>
-      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="350" y="590" width="-1" height="-1"/>
