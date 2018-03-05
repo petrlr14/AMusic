@@ -42,7 +42,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.informacion=Informacion;
-        
+        this.directorio=directorio;
         canciones=Canciones;
         
         songs=new ArrayList<String>();
@@ -85,8 +85,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
                 }
-                indiceObtenido=getIndex(datoSeleccionado);
-                System.out.println(directorio+"\\"+canciones.get(indiceObtenido));
+                indiceObtenido=getIndex(datoSeleccionado,0);
             }
         });
         Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
@@ -94,13 +93,125 @@ public class InterfazReproductor extends javax.swing.JFrame {
     }
     
     
-    public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getClickCount());;
-        if (e.getClickCount() == 2) {
-            int row = jTable1.getSelectedRow();
-            System.out.println(row);
+    private void cambiarACancion(){
+        datos=new Object[songs.size()][1];
+        for(int i=0; i<songs.size(); i++){
+            datos[i][0]=songs.get(i);
         }
+        DefaultTableModel Model=new DefaultTableModel(datos,
+                new String [] {
+                    "Songs"}){
+                    @Override
+                    public boolean isCellEditable(int row, int column){
+                        return false;
+                    }
+                };
+        jTable1.setModel(Model);
+        jTable1.setAutoCreateRowSorter(true);
+        ListSelectionModel model=jTable1.getSelectionModel();
+        model.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!model.isSelectionEmpty()){
+                    int row=jTable1.getSelectedRow();
+                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
+                }                    
+                mostrarCancionesRelacionadas(0);
+            }
+        });
+        Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
     }
+    
+    private void cambiarAAlbum(){
+        datos=new Object[uniqueAlbumes.size()][1];
+        Object[] array=uniqueAlbumes.toArray();
+        for(int i=0; i<uniqueAlbumes.size(); i++){
+            datos[i][0]=array[i];
+        }
+        DefaultTableModel Model=new DefaultTableModel(datos,
+                new String [] {
+                    "Albums"}){
+                    @Override
+                    public boolean isCellEditable(int row, int column){
+                        return false;
+                    }
+                };
+        jTable1.setModel(Model);
+        jTable1.setAutoCreateRowSorter(true);
+        ListSelectionModel model=jTable1.getSelectionModel();
+        model.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!model.isSelectionEmpty()){
+                    int row=jTable1.getSelectedRow();
+                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
+                    mostrarCancionesRelacionadas(2);
+                }
+            }
+        });
+        Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
+    }
+    private void cambiarAGenero(){
+        datos=new Object[uniqueGenero.size()][1];
+        Object[] array=uniqueGenero.toArray();
+        for(int i=0; i<uniqueGenero.size(); i++){
+            datos[i][0]=array[i];
+        }
+        DefaultTableModel Model=new DefaultTableModel(datos,
+                new String [] {
+                    "Genres"}){
+                    @Override
+                    public boolean isCellEditable(int row, int column){
+                        return false;
+                    }
+                };
+        jTable1.setModel(Model);
+        jTable1.setAutoCreateRowSorter(true);
+        ListSelectionModel model=jTable1.getSelectionModel();
+        model.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!model.isSelectionEmpty()){
+                    int row=jTable1.getSelectedRow();
+                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
+                    mostrarCancionesRelacionadas(3);
+                }
+            }
+        });
+        Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
+    }
+    private void cambiarAArtistas(){
+        datos=new Object[uniqueArtistas.size()][1];
+        Object[] array=uniqueArtistas.toArray();
+        for(int i=0; i<uniqueArtistas.size(); i++){
+            datos[i][0]=array[i];
+        }
+        DefaultTableModel Model=new DefaultTableModel(datos,
+                new String [] {
+                    "Artists"}){
+                    @Override
+                    public boolean isCellEditable(int row, int column){
+                        return false;
+                    }
+                };
+        jTable1.setModel(Model);
+        jTable1.setAutoCreateRowSorter(true);
+        ListSelectionModel model=jTable1.getSelectionModel();
+        model.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!model.isSelectionEmpty()){
+                    int row=jTable1.getSelectedRow();
+                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
+                    mostrarCancionesRelacionadas(1);
+                    
+                }            
+            }
+        });
+        Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -311,20 +422,42 @@ public class InterfazReproductor extends javax.swing.JFrame {
         }
         
         this.informacion=Informacion;
-        datos=new Object[Informacion.size()][4];
-        for(int i=0; i<Informacion.size(); i++){
-            for(int j=0; j<4; j++){
-                datos[i][j]=Informacion.get(i)[j];
-            }
-        }
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                datos,
-                new String [] {
-                    "Title", "Artist", "Album", "Genero"
-                })
-        );
-        jTable1.setAutoCreateRowSorter(true);
         
+        songs=new ArrayList<String>();
+        artistas=new ArrayList<String>();
+        albumes=new ArrayList<String>();
+        genero=new ArrayList<String>();
+
+        for(int i=0; i<Informacion.size(); i++){
+            songs.add(Informacion.get(i)[0]);
+            artistas.add(Informacion.get(i)[1]);
+            albumes.add(Informacion.get(i)[2]);
+            genero.add(Informacion.get(i)[3]);
+        }
+        
+        uniqueArtistas=new HashSet<String>(artistas);
+        uniqueAlbumes=new HashSet<String>(albumes);
+        uniqueGenero=new HashSet<String>(genero);
+        
+        
+        datos=new Object[Informacion.size()][1];
+        
+        for(int i=0; i<songs.size(); i++){
+            datos[i][0]=songs.get(i);
+        }
+        DefaultTableModel Model=new DefaultTableModel(datos,
+                new String [] {
+                    "Songs"}){
+                    @Override
+                    public boolean isCellEditable(int row, int column){
+                        return false;
+                    }
+        };
+        
+        
+        jTable1.setModel(Model);
+        jTable1.setAutoCreateRowSorter(true);
+        Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
     }//GEN-LAST:event_selectFileMouseReleased
 
     private void songOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_songOptionMousePressed
@@ -333,7 +466,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         resetColor(albumOption);
         resetColor(genderOption);
         resetColor(artistOption);
-        
+        cambiarACancion();
     }//GEN-LAST:event_songOptionMousePressed
 
     private void albumOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_albumOptionMousePressed
@@ -342,6 +475,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         resetColor(songOption);
         resetColor(genderOption);
         resetColor(artistOption);
+        cambiarAAlbum();
     }//GEN-LAST:event_albumOptionMousePressed
 
     private void genderOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genderOptionMousePressed
@@ -350,6 +484,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         resetColor(songOption);
         resetColor(albumOption);
         resetColor(artistOption);
+        cambiarAGenero();
     }//GEN-LAST:event_genderOptionMousePressed
 
     private void artistOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_artistOptionMousePressed
@@ -358,6 +493,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
         resetColor(songOption);
         resetColor(genderOption);
         resetColor(albumOption);
+        cambiarAArtistas();
     }//GEN-LAST:event_artistOptionMousePressed
     
     
@@ -371,20 +507,67 @@ public class InterfazReproductor extends javax.swing.JFrame {
         panel.setBackground(new Color(60,63,65));
         panel.setOpaque(false);
         
-        System.out.println("oliii");
-        
     }
     
     
-    private int getIndex(String[] infoObtenida){
+    private int getIndex(String[] infoObtenida, int dato){
         for(String[] info:this.informacion){
-            if(info[0]==infoObtenida[0]&&info[1]==infoObtenida[1]&&info[2]==infoObtenida[2]&&info[3]==infoObtenida[3]){
+            if(info[0]==infoObtenida[dato]){
                 return this.informacion.indexOf(info);
             }
         }
         return 1;
     }
     
+    private List<Integer> getCanciones(String datoABuscar, int tipoDedato){
+        indicesDecanciones=new ArrayList<Integer>();
+        for(String[] x:informacion){
+            if(x[tipoDedato].matches(datoABuscar)){
+                indicesDecanciones.add(informacion.indexOf(x));
+            }
+        }
+        return indicesDecanciones;
+    }
+    
+    /*
+    songAsociadosADetalles=new ArrayList<String>();
+                    List<Integer>m=getCanciones(datoSeleccionado[0], 1);
+                    for(Integer c:m){
+                        System.out.println(directorio+"\\"+canciones.get(c));
+                    }
+    */
+    
+    private void mostrarCancionesRelacionadas(int tipoDeDato){
+        List<Integer> m=getCanciones(datoSeleccionado[0],tipoDeDato);
+        datos=new Object[m.size()][1];
+        int cont=0;
+        for(Integer x:m){
+            datos[cont][0]=songs.get(x);
+            cont++;
+        }
+        DefaultTableModel Model=new DefaultTableModel(datos,
+                new String [] {
+                    "Songs"}){
+                    @Override
+                    public boolean isCellEditable(int row, int column){
+                        return false;
+                    }
+                };
+        jTable1.setModel(Model);
+        jTable1.setAutoCreateRowSorter(true);
+        ListSelectionModel model=jTable1.getSelectionModel();
+        model.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(!model.isSelectionEmpty()){
+                    int row=jTable1.getSelectedRow();
+                    datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
+                    System.out.println(datoSeleccionado[0]);
+                }
+            }
+        });
+        Tabla.setCellsAlignment(jTable1, SwingConstants.CENTER);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel albumOption;
@@ -424,9 +607,13 @@ public class InterfazReproductor extends javax.swing.JFrame {
     private List<String> albumes;
     private List<String> genero;
     
+    private List<String> songAsociadosADetalles;
+    
     private Set<String> uniqueArtistas;
     private Set<String> uniqueAlbumes;
     private Set<String> uniqueGenero;
     
+    
+    private List<Integer> indicesDecanciones;
     
 }
