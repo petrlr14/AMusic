@@ -93,6 +93,7 @@ public class InterfazReproductor extends javax.swing.JFrame {
                     play.setVisible(false);
                     pause.setVisible(true);
                     procesos.stop();
+                    System.out.println(direccionPlayer);
                     procesos.play(direccionPlayer);
                 }
              }});
@@ -104,7 +105,6 @@ public class InterfazReproductor extends javax.swing.JFrame {
                     int row=jTable1.getSelectedRow();
                     datoSeleccionado[0]=jTable1.getValueAt(row, 0).toString();
                 }
-                songAsociadosADetalles=new ArrayList<String>();
                 List<Integer>m=getCanciones(datoSeleccionado[0], 0);
                     for(Integer c:m){
                         if(directorio.charAt(directorio.length()-1)=='\\'){
